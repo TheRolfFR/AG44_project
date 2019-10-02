@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1569343615 source:/home/users/ylevague/ag44_project/main.cpp
+	<iostream>
+	"include/Graph.h"
+
+1569343671 source:/home/users/ylevague/ag44_project/src/Edge.cpp
+	"../include/Edge.h"
+	"../include/Vertice.h"
+
+1569343647 /home/users/ylevague/ag44_project/include/Edge.h
+	"Vertice.h"
+
+1569343008 /home/users/ylevague/ag44_project/include/Vertice.h
+	<iostream>
+	<vector>
+
+1569343688 source:/home/users/ylevague/ag44_project/src/Graph.cpp
+	"../include/Graph.h"
+	"../include/Vertice.h"
+	<stdlib.h>
+	<time.h>
+	<vector>
+	<iostream>
+
+1569343514 /home/users/ylevague/ag44_project/include/Graph.h
+	"Vertice.h"
+	"Edge.h"
+	<iostream>
+	<vector>
+
+1569342994 source:/home/users/ylevague/ag44_project/src/Vertice.cpp
+	"../include/Vertice.h"
+	<vector>
+
