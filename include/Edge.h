@@ -11,6 +11,8 @@ class Edge
         void setId(int);
         void print();
         int getId();
+        int getSrcId();
+        int getDstId();
 
     private:
         int id;

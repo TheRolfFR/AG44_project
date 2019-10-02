@@ -5,8 +5,20 @@
 #include <vector>
 #include <iostream>
 
-
 using namespace std;
+
+int getDigits(int number) {
+    if(number == 0)
+        return 1;
+
+    int digits = 0;
+    while(number != 0) {
+        digits++;
+        number /= 10;
+    }
+
+    return digits;
+}
 
 Graph::Graph(int nVertices)
 {
@@ -22,6 +34,7 @@ Graph::Graph(int nVertices)
             for(int b = 0; b < nVertices; b++) {
                 if(a != b && rand()%2 == 1) {
                     this->listEdge.push_back(Edge(id, &this->listVertices[a], &this->listVertices[b]));
+                    // this->listEdge.push_back(Edge(id, &this->listVertices[b], &this->listVertices[a])); // DIAGONAL
                     id++;
                     this->listVertices[a].addNeighbour(&this->listVertices[b]);
                     this->listVertices[b].addNeighbour(&this->listVertices[a]);
@@ -69,8 +82,50 @@ Edge* Graph::getEdge(int id) {
     return result;
 }
 
+void Graph::printMap() {
+    int digits = getDigits(this->listVertices.size());
+    int beforeSpaces;
+
+    // before spaces
+    for(int i = 0; i < digits+1; i++) { cout << " "; }
+
+    // header numbers
+    for(int i = 0; i < (int) this->listVertices.size(); i++) {
+        cout << this->listVertices.at(i).getId() << " ";
+    }
+    cout << endl;
+
+    // print relations
+    for(int i = 0; i < (int) this->listVertices.size(); i++) {
+        cout << this->listVertices[i].getId();
+
+        // before spaces
+        beforeSpaces = digits - getDigits(this->listVertices[i].getId());
+        for(int a = 0; a < beforeSpaces; a++) { cout << " "; }
+
+        for(int a = 0; a < (int) this->listVertices.size(); a++) {
+            // before spaces
+            beforeSpaces = getDigits(this->listVertices[a].getId()) - 1;
+            for(int c = 0; c < beforeSpaces; c++) { cout << " "; }
+
+            // print relation
+            if(isLinked(this->listVertices[i].getId(), this->listVertices[a].getId())) {
+                cout << " X";
+            } else {
+                cout << "  ";
+            }
+        }
+        cout << endl;
+    }
+}
+
 bool Graph::isLinked(int srcId, int dstId) {
-    for(auto i = this->listEdge.begin(); b != )
+    for(int i = 0; i < this->listEdge.size(); i++) {
+        if(this->listEdge[i].getSrcId() == srcId && this->listEdge[i].getDstId() == dstId) {
+            return true;
+        }
+    }
+    return false;
 }
 
 Graph::~Graph()

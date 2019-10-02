@@ -13,12 +13,13 @@ class Graph
         void print();
         Vertice* getVertice(int);
         Edge* getEdge(int);
-        bool isLinked(int, int);
+        void printMap();
 
     private:
         vector<Vertice> listVertices;
         vector<Edge> listEdge;
         int ** cost;
+        bool isLinked(int, int);
 };
 
 #endif // GRAPH_H

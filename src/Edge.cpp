@@ -26,3 +26,11 @@ void Edge::print() {
 int Edge::getId() {
     return this->id;
 }
+
+int Edge::getSrcId() {
+    return this->src->getId();
+}
+
+int Edge::getDstId() {
+    return this->dst->getId();
+}
