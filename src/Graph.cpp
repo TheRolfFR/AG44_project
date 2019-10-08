@@ -208,13 +208,13 @@ void Graph::loadFromFile(const char filepath[]) {
 
         getline(file, line);
         if(line[0] == 'm' || line[0] == 'l') {
+            // first we make "length" vertices
+            for(int i = 0; i < length; ++i) {
+                this->listVertices.push_back(Vertice(i));
+            }
+
             if(line[0] == 'm') {
                 // we have a matrix
-
-                // first we make "length" vertices
-                for(int i = 0; i < length; ++i) {
-                    this->listVertices.push_back(Vertice(i));
-                }
 
                 // then we make the edges between the vertices thanks to the file
                 for(int srcIndex = 0; srcIndex < length; ++srcIndex) {
@@ -236,6 +236,8 @@ void Graph::loadFromFile(const char filepath[]) {
                 return;
             } else {
                 // we have an adjency list
+
+
             }
         }
     }
