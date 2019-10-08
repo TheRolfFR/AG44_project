@@ -9,15 +9,18 @@ class Graph
 {
     public:
         Graph(int);
+        Graph(int, char);
         virtual ~Graph();
         void print();
         Vertice* getVertice(int);
+        void saveAsMatrix(const char[]);
         Edge* getEdge(int);
         void printMap();
         void printList();
         void saveAsAdjencyList(const char*);
 
     private:
+        char typeOfGraph; // 'o' for directed, 'n' for undirected
         vector<Vertice> listVertices;
         vector<Edge> listEdge;
         int ** cost;

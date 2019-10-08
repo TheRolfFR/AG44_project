@@ -21,7 +21,7 @@ int getDigits(int number) {
     return digits;
 }
 
-Graph::Graph(int nVertices)
+Graph::Graph(int nVertices) : typeOfGraph('n')
 {
     if(nVertices > 0) {
         srand(time(NULL));
@@ -47,6 +47,8 @@ Graph::Graph(int nVertices)
         exit(-1);
     }
 }
+
+Graph::Graph(int nVertices, char tOfGraph): typeOfGraph(tOfGraph) {}
 
 void Graph::print() {
     cout << "graph with " << this->listVertices.size() << " vertices and " << this->listEdge.size() << " edges" << endl;
@@ -93,6 +95,29 @@ Vertice* Graph::getVertice(int id) {
     }
 
     return result;
+}
+
+void Graph::saveAsMatrix(const char filepath[]) {
+    ofstream file(filepath);
+
+    file << this->listVertices.size() << endl;
+    file << this->typeOfGraph << endl;
+    file << "m" << endl;
+
+    int length = (int) this->listVertices.size();
+    for(int i = 0; i < length; ++i) {
+        for(int j = 0; j < length; ++j) {
+            if(this->isLinked(listVertices[i].id, listVertices[j].id)) {
+                file << "1";
+            } else {
+                file << "0";
+            }
+            file << ";";
+        }
+        file << endl;
+    }
+
+    file.close();
 }
 
 Edge* Graph::getEdge(int id) {

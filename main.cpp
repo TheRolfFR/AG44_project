@@ -9,6 +9,8 @@ int main()
     g.printMap();
     g.printList();
     g.saveAsAdjencyList("test.txt");
+    g.saveAsMatrix("testMatrix.txt");
+
 //
 //    cout << endl;
 //
