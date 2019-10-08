@@ -4,6 +4,7 @@
 #include <time.h>
 #include <vector>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -32,7 +33,7 @@ Graph::Graph(int nVertices)
         int id = 0;
         for(int a = 0; a < nVertices; a++) {
             for(int b = 0; b < nVertices; b++) {
-                if(a != b && rand()%2 == 1) {
+                if(a != b && rand()%20 == 1) {
                     this->listEdge.push_back(Edge(id, &this->listVertices[a], &this->listVertices[b]));
                     // this->listEdge.push_back(Edge(id, &this->listVertices[b], &this->listVertices[a])); // DIAGONAL
                     id++;
@@ -52,6 +53,32 @@ void Graph::print() {
     for(auto i = this->listVertices.begin(); i != this->listVertices.end(); ++i) {
         (*i).print();
     }
+}
+
+void Graph::printList() {
+    int x = (int)this->listVertices.size();
+    for (int i = 0; i<x; ++i){
+        for (int j = 0; j<x; ++j){
+            if (isLinked(this->listVertices[i].id,this->listVertices[j].id)){
+                    cout << this->listVertices[j].id << "; ";
+            }
+        }
+        cout << endl;
+    }
+}
+
+void Graph::saveAsAdjencyList(const char* filepath){
+    ofstream file(filepath);
+    int x = (int)this->listVertices.size();
+    for (int i = 0; i<x; ++i){
+        for (int j = 0; j<x; ++j){
+            if (isLinked(this->listVertices[i].id,this->listVertices[j].id)){
+                    file << this->listVertices[j].id << "; ";
+            }
+        }
+        file << endl;
+    }
+    file.close();
 }
 
 Vertice* Graph::getVertice(int id) {
@@ -120,7 +147,7 @@ void Graph::printMap() {
 }
 
 bool Graph::isLinked(int srcId, int dstId) {
-    for(int i = 0; i < this->listEdge.size(); i++) {
+    for(int i = 0; i < (int)this->listEdge.size(); i++) {
         if(this->listEdge[i].getSrcId() == srcId && this->listEdge[i].getDstId() == dstId) {
             return true;
         }

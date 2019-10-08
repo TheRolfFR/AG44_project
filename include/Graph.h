@@ -14,6 +14,8 @@ class Graph
         Vertice* getVertice(int);
         Edge* getEdge(int);
         void printMap();
+        void printList();
+        void saveAsAdjencyList(const char*);
 
     private:
         vector<Vertice> listVertices;

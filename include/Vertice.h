@@ -7,6 +7,7 @@ using namespace std;
 
 class Vertice
 {
+    friend class Graph;
     public:
         Vertice(int);
         virtual ~Vertice();

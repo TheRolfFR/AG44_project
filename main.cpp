@@ -7,6 +7,8 @@ int main()
 {
     Graph g(19);
     g.printMap();
+    g.printList();
+    g.saveAsAdjencyList("test.txt");
 //
 //    cout << endl;
 //
