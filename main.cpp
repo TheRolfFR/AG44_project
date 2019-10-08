@@ -5,9 +5,8 @@ using namespace std;
 
 int main()
 {
-    Graph g(19, 'n');
+    Graph g("testMatrix.txt");
     g.printMap();
-    g.saveAsMatrix("testMatrix.txt");
 //
 //    cout << endl;
 //

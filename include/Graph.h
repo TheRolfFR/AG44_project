@@ -11,15 +11,16 @@ class Graph
         Graph();
         Graph(int);
         Graph(int, char);
+        Graph(const char *);
         virtual ~Graph();
         void print();
         Vertice* getVertice(int);
         Edge* getEdge(int);
         void printMap();
         void printList();
-        void saveAsMatrix(const char[]);
+        void saveAsMatrix(const char*);
         void saveAsAdjencyList(const char*);
-        void loadFromFile(const char[]);
+        void loadFromFile(const char*);
 
     private:
         char typeOfGraph; // 'o' for directed, 'n' for undirected
