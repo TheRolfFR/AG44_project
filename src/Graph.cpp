@@ -35,7 +35,7 @@ void Graph::generateRandomGraph(int nVertices, char typeOfGraph) {
             for(int b = 0; b < nVertices; b++) {
                 if(a != b && rand()%20 == 1) {
                     this->listEdge.push_back(Edge(id, &this->listVertices[a], &this->listVertices[b]));
-                    if(typeOfGraph == 'o')
+                    if(typeOfGraph == 'n')
                         this->listEdge.push_back(Edge(id, &this->listVertices[b], &this->listVertices[a])); // DIAGONAL
                     id++;
                     this->listVertices[a].addNeighbour(&this->listVertices[b]);
@@ -50,15 +50,17 @@ void Graph::generateRandomGraph(int nVertices, char typeOfGraph) {
 }
 
 Graph::Graph() : typeOfGraph('n') {
-    generateRandomGraph(0, typeOfGraph);
+    generateRandomGraph(0, this->typeOfGraph);
 }
 
 Graph::Graph(int nVertices) : typeOfGraph('n')
 {
-    generateRandomGraph(nVertices, typeOfGraph);
+    generateRandomGraph(nVertices, this->typeOfGraph);
 }
 
-Graph::Graph(int nVertices, char tOfGraph): typeOfGraph(tOfGraph) {}
+Graph::Graph(int nVertices, char tOfGraph): typeOfGraph(tOfGraph) {
+    generateRandomGraph(nVertices, this->typeOfGraph);
+}
 
 void Graph::print() {
     cout << "graph with " << this->listVertices.size() << " vertices and " << this->listEdge.size() << " edges" << endl;
