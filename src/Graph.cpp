@@ -62,6 +62,10 @@ Graph::Graph(int nVertices, char tOfGraph): typeOfGraph(tOfGraph) {
     generateRandomGraph(nVertices, this->typeOfGraph);
 }
 
+Graph::Graph(const char* filepath) {
+    loadFromFile(filepath);
+}
+
 void Graph::print() {
     cout << "graph with " << this->listVertices.size() << " vertices and " << this->listEdge.size() << " edges" << endl;
     for(auto i = this->listVertices.begin(); i != this->listVertices.end(); ++i) {
@@ -197,16 +201,16 @@ void Graph::loadFromFile(const char filepath[]) {
 
     std::string line;
 
-    getline(file, line);
+    file >> line;
     int length = atoi(line.c_str());
     int value;
     cout << "file with " << length << "vertices" << endl;
 
-    getline(file, line);
+    file >> line;
     if(line[0] == 'o' || line[0] == 'n') {
         bool notdirected = line[0] == 'n';
 
-        getline(file, line);
+        file >> line;
         if(line[0] == 'm' || line[0] == 'l') {
             if(line[0] == 'm') {
                 // we have a matrix
