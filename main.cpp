@@ -7,6 +7,7 @@ int main()
 {
     Graph g(19);
     g.printMap();
+    g.saveAsMatrix("testMatrix.txt");
 //
 //    cout << endl;
 //
