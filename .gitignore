@@ -1,4 +1,5 @@
 bin/
 obj/
 ag44_project.depend
-
+test.txt
+testMatrix.txt

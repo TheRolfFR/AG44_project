@@ -2,6 +2,7 @@
 #include "../include/Vertice.h"
 #include <stdlib.h>
 #include <time.h>
+#include <stdlib.h>
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -21,8 +22,7 @@ int getDigits(int number) {
     return digits;
 }
 
-Graph::Graph(int nVertices) : typeOfGraph('n')
-{
+void Graph::generateRandomGraph(int nVertices, char typeOfGraph) {
     if(nVertices > 0) {
         srand(time(NULL));
 
@@ -35,7 +35,8 @@ Graph::Graph(int nVertices) : typeOfGraph('n')
             for(int b = 0; b < nVertices; b++) {
                 if(a != b && rand()%20 == 1) {
                     this->listEdge.push_back(Edge(id, &this->listVertices[a], &this->listVertices[b]));
-                    // this->listEdge.push_back(Edge(id, &this->listVertices[b], &this->listVertices[a])); // DIAGONAL
+                    if(typeOfGraph == 'o')
+                        this->listEdge.push_back(Edge(id, &this->listVertices[b], &this->listVertices[a])); // DIAGONAL
                     id++;
                     this->listVertices[a].addNeighbour(&this->listVertices[b]);
                     this->listVertices[b].addNeighbour(&this->listVertices[a]);
@@ -46,6 +47,15 @@ Graph::Graph(int nVertices) : typeOfGraph('n')
         cerr << "needs a positive number of vertices, given " << nVertices;
         exit(-1);
     }
+}
+
+Graph::Graph() : typeOfGraph('n') {
+    generateRandomGraph(0, typeOfGraph);
+}
+
+Graph::Graph(int nVertices) : typeOfGraph('n')
+{
+    generateRandomGraph(nVertices, typeOfGraph);
 }
 
 Graph::Graph(int nVertices, char tOfGraph): typeOfGraph(tOfGraph) {}
@@ -112,7 +122,7 @@ void Graph::saveAsMatrix(const char filepath[]) {
             } else {
                 file << "0";
             }
-            file << ";";
+            file << " ";
         }
         file << endl;
     }
@@ -180,7 +190,60 @@ bool Graph::isLinked(int srcId, int dstId) {
     return false;
 }
 
+void Graph::loadFromFile(const char filepath[]) {
+    ifstream file(filepath);
+
+    std::string line;
+
+    getline(file, line);
+    int length = atoi(line.c_str());
+    int value;
+    cout << "file with " << length << "vertices" << endl;
+
+    getline(file, line);
+    if(line[0] == 'o' || line[0] == 'n') {
+        bool notdirected = line[0] == 'n';
+
+        getline(file, line);
+        if(line[0] == 'm' || line[0] == 'l') {
+            if(line[0] == 'm') {
+                // we have a matrix
+
+                // first we make "length" vertices
+                for(int i = 0; i < length; ++i) {
+                    this->listVertices.push_back(Vertice(i));
+                }
+
+                // then we make the edges between the vertices thanks to the file
+                for(int srcIndex = 0; srcIndex < length; ++srcIndex) {
+                    for(int dstIndex = 0; dstIndex < length; ++dstIndex) {
+                        file >> value;
+                        if(value == 1) {
+                            this->listEdge.push_back(Edge(srcIndex, &listVertices[srcIndex], &listVertices[dstIndex]));
+                            if(notdirected)
+                                this->listEdge.push_back(Edge(srcIndex, &listVertices[dstIndex], &listVertices[srcIndex]));
+
+                            this->listVertices[srcIndex].addNeighbour(&this->listVertices[dstIndex]);
+                            this->listVertices[dstIndex].addNeighbour(&this->listVertices[srcIndex]);
+                        }
+                        // file >> ";";
+                    }
+                    // file >> endl;
+                }
+
+                return;
+            } else {
+                // we have an adjency list
+            }
+        }
+    }
+
+    file.close();
+
+    cerr << "file read with an error while parsing";
+    exit(1);
+}
+
 Graph::~Graph()
 {
-    //free(this->listEdge);
 }

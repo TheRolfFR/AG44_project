@@ -5,12 +5,9 @@ using namespace std;
 
 int main()
 {
-    Graph g(19);
+    Graph g(19, 'n');
     g.printMap();
-    g.printList();
-    g.saveAsAdjencyList("test.txt");
     g.saveAsMatrix("testMatrix.txt");
-
 //
 //    cout << endl;
 //
