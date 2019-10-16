@@ -5,6 +5,8 @@ using namespace std;
 
 int main()
 {
+    Graph h(19, 'o');
+    h.saveAsMatrix("testMatrix.txt");
     Graph g("testMatrix.txt");
     g.printMap();
 //

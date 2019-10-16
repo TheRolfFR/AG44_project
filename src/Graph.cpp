@@ -242,6 +242,8 @@ void Graph::loadFromFile(const char filepath[]) {
                 // we have an adjency list
 
 
+
+
             }
         }
     }
