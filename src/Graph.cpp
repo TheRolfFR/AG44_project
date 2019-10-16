@@ -2,10 +2,10 @@
 #include "../include/Vertice.h"
 #include <stdlib.h>
 #include <time.h>
-#include <stdlib.h>
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -87,11 +87,16 @@ void Graph::printList() {
 
 void Graph::saveAsAdjencyList(const char* filepath){
     ofstream file(filepath);
+
+    file << this->listVertices.size() << endl;
+    file << this->typeOfGraph << endl;
+    file << "l" << endl;
+
     int x = (int)this->listVertices.size();
     for (int i = 0; i<x; ++i){
         for (int j = 0; j<x; ++j){
             if (isLinked(this->listVertices[i].id,this->listVertices[j].id)){
-                    file << this->listVertices[j].id << "; ";
+                    file << this->listVertices[j].id << " ";
             }
         }
         file << endl;
@@ -237,13 +242,31 @@ void Graph::loadFromFile(const char filepath[]) {
                     // file >> endl;
                 }
 
+                file.close();
                 return;
             } else {
                 // we have an adjency list
 
+                string line="";
+                getline(file, line);
+                int originVertice = 0;
+                while (getline(file, line))
+                {
+                    istringstream iss(line);
+                    int destinationVertice;
+                    //if (!(iss>>destinationVertice)){continue;}
 
+                    while (iss>>destinationVertice)
+                    {
+                        this->listEdge.push_back(Edge(originVertice, &listVertices[originVertice], &listVertices[destinationVertice]));
+                        if(notdirected)
+                            this->listEdge.push_back(Edge(originVertice, &listVertices[destinationVertice], &listVertices[originVertice]));
+                    }
+                    ++originVertice;
+                }
 
-
+                file.close();
+                return;
             }
         }
     }

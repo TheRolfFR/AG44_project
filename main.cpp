@@ -5,10 +5,13 @@ using namespace std;
 
 int main()
 {
-    Graph h(19, 'o');
+    Graph h(19, 'n');
     h.saveAsMatrix("testMatrix.txt");
     Graph g("testMatrix.txt");
+    g.print();
+    h.printMap();
     g.printMap();
+
 //
 //    cout << endl;
 //
