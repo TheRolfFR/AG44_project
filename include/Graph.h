@@ -7,6 +7,8 @@
 
 class Graph
 {
+    friend class BFS;
+    friend class DFS;
     public:
         Graph();
         Graph(int);

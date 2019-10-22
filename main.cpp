@@ -1,13 +1,17 @@
 #include <iostream>
 #include "include/Graph.h"
+#include "DFS.h"
 
 using namespace std;
 
 int main()
 {
-    Graph g("testAdgency.txt");
-    g.printAsList();
-
+    Graph g(19, 'o');
+    g.PrintAsMatrix();
+    DFS dfs;
+    int* result = dfs.execute(g,g.getVertice(0));
+    cout<<endl;
+    dfs.print(g,result);
 //
 //    cout << endl;
 //

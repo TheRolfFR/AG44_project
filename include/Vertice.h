@@ -7,7 +7,7 @@ using namespace std;
 
 class Vertice
 {
-    friend class BFS:
+    friend class BFS;
     friend class DFS;
     friend class Graph;
     public:
@@ -23,7 +23,7 @@ class Vertice
     private:
         char color;
         int dist;
-        Vector *predecessor;
+        Vertice* predecessor;
 
         int startDepth;
         int endDepth;
