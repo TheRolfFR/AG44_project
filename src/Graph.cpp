@@ -73,7 +73,7 @@ void Graph::print() {
     }
 }
 
-void Graph::printList() {
+void Graph::printAsList() {
     int x = (int)this->listVertices.size();
     for (int i = 0; i<x; ++i){
         for (int j = 0; j<x; ++j){
@@ -155,7 +155,7 @@ Edge* Graph::getEdge(int id) {
     return result;
 }
 
-void Graph::printMap() {
+void Graph::PrintAsMatrix() {
     int digits = getDigits(this->listVertices.size());
     int beforeSpaces;
 

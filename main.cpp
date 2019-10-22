@@ -5,12 +5,8 @@ using namespace std;
 
 int main()
 {
-    Graph h(19, 'n');
-    h.saveAsMatrix("testMatrix.txt");
-    Graph g("testMatrix.txt");
-    g.print();
-    h.printMap();
-    g.printMap();
+    Graph g("testAdgency.txt");
+    g.printAsList();
 
 //
 //    cout << endl;

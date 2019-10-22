@@ -7,6 +7,8 @@ using namespace std;
 
 class Vertice
 {
+    friend class BFS:
+    friend class DFS;
     friend class Graph;
     public:
         Vertice(int);
@@ -19,6 +21,13 @@ class Vertice
     protected:
 
     private:
+        char color;
+        int dist;
+        Vector *predecessor;
+
+        int startDepth;
+        int endDepth;
+
         int id;
         vector<Vertice*> neighbours;
 };

@@ -16,8 +16,8 @@ class Graph
         void print();
         Vertice* getVertice(int);
         Edge* getEdge(int);
-        void printMap();
-        void printList();
+        void PrintAsMatrix();
+        void printAsList();
         void saveAsMatrix(const char*);
         void saveAsAdjencyList(const char*);
         void loadFromFile(const char*);
