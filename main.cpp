@@ -6,10 +6,10 @@ using namespace std;
 
 int main()
 {
-    Graph g(19, 'o');
+    Graph g("testMatrix.txt");
     g.PrintAsMatrix();
     BFS bfs;
-    int* result = bfs.execute(g, *g.getVertice(0));
+    int* result = bfs.execute(g, g.getVertice(0));
     bfs.printResult(result, g);
     return 0;
 }
