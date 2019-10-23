@@ -36,6 +36,7 @@ int* DFS::execute (Graph& graph, Vertice* s)
         graph.listVertices[i].predecessor = NULL;
     }
     this->time = 0;
+    this->visit(graph,s);
     for (int i=0;i<graph.listVertices.size();++i)
     {
         if (graph.listVertices[i].color == 'w')
