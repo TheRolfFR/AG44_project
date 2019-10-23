@@ -8,8 +8,8 @@ using namespace std;
 
 int main()
 {
-    Graph g("testMatrix.txt");
-    g.PrintAsMatrix();
+    Graph g(10000, 'o');
+    //g.printAsList();
 
     BFS bfs;
     DFS dfs;
@@ -18,13 +18,13 @@ int main()
     cout << endl << "BFS: ";
     timer.start();
     int* result = bfs.execute(g, g.getVertice(0));
-    cout << timer.stop() << "ms" << endl;
-    bfs.printResult(result, g);
+    cout << timer.stop() << "s" << endl;
+    //bfs.printResult(result, g);
 
     cout << "DFS: ";
     timer.start();
     int* res = dfs.execute(g, g.getVertice(0));
-    cout << timer.stop() << "ms" << endl;
-    dfs.print(g, res);
+    cout << timer.stop() << "s" << endl;
+    //dfs.print(g, res);
     return 0;
 }

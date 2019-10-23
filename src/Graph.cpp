@@ -33,7 +33,7 @@ void Graph::generateRandomGraph(int nVertices, char typeOfGraph) {
         int id = 0;
         for(int a = 0; a < nVertices; a++) {
             for(int b = 0; b < nVertices; b++) {
-                if(a != b && rand()%19 == 1) {
+                if(a != b && rand()%6 == 1) {
                     this->listEdge.push_back(Edge(id, &this->listVertices[a], &this->listVertices[b]));
                     if(typeOfGraph == 'n')
                         this->listEdge.push_back(Edge(id, &this->listVertices[b], &this->listVertices[a])); // DIAGONAL
