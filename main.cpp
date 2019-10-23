@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
     Graph g("testMatrix.txt");
-    g.PrintAsMatrix();
+    g.printAsList();
     BFS bfs;
     int* result = bfs.execute(g, g.getVertice(0));
     bfs.printResult(result, g);

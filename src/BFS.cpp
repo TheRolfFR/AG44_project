@@ -74,7 +74,7 @@ void BFS::visit(Vertice* s) {
                 v->predecessor = u;
                 // enqueue
                 Q.push(v);
-                cout << "queuing " << v->id << endl;
+                cout << " queuing " << v->id << endl;
             }
         }
         u->color = 'b';
