@@ -39,7 +39,6 @@ void Graph::generateRandomGraph(int nVertices, char typeOfGraph) {
                         this->listEdge.push_back(Edge(id, &this->listVertices[b], &this->listVertices[a])); // DIAGONAL
                     id++;
                     this->listVertices[a].addNeighbour(&this->listVertices[b]);
-                    this->listVertices[b].addNeighbour(&this->listVertices[a]);
                 }
             }
         }
@@ -235,7 +234,6 @@ void Graph::loadFromFile(const char filepath[]) {
                                 this->listEdge.push_back(Edge(srcIndex, &listVertices[dstIndex], &listVertices[srcIndex]));
 
                             this->listVertices[srcIndex].addNeighbour(&this->listVertices[dstIndex]);
-                            this->listVertices[dstIndex].addNeighbour(&this->listVertices[srcIndex]);
                         }
                         // file >> ";";
                     }
@@ -261,6 +259,8 @@ void Graph::loadFromFile(const char filepath[]) {
                         this->listEdge.push_back(Edge(originVertice, &listVertices[originVertice], &listVertices[destinationVertice]));
                         if(notdirected)
                             this->listEdge.push_back(Edge(originVertice, &listVertices[destinationVertice], &listVertices[originVertice]));
+                        // louis you forgot this important line
+                        this->listVertices[originVertice].addNeighbour(&this->listVertices[destinationVertice]);
                     }
                     ++originVertice;
                 }

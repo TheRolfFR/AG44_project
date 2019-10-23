@@ -69,8 +69,9 @@ void DFS::visit (Graph& graph,Vertice* u)
 
 void DFS::print (const Graph& graph, int* result)
 {
-    for (unsigned int i=0;i<graph.listVertices.size();++i)
-    {
-        cout<<result[i]<<endl;
+    cout << "[ ";
+    for(int i = 0; i < (int) graph.listVertices.size(); i++) {
+        cout << result[i] << " ";
     }
+    cout << "]" << endl;
 }

@@ -53,7 +53,7 @@ void BFS::visit(Vertice* s) {
     queue <Vertice*> Q;
     int* result = this->lastResults.back();
 
-    cout << "visit from" << s->id << endl;
+    // cout << "visit from" << s->id << endl;
 
     Vertice *u, *v;
     Q.push(s);
@@ -61,7 +61,7 @@ void BFS::visit(Vertice* s) {
         // dequeue
         u = Q.front();
         Q.pop();
-        cout << "dequeuing " << u->id << endl;
+        // cout << "dequeuing " << u->id << endl;
 
         result[resultIndex] = u->id;
         ++resultIndex;
@@ -74,7 +74,7 @@ void BFS::visit(Vertice* s) {
                 v->predecessor = u;
                 // enqueue
                 Q.push(v);
-                cout << " queuing " << v->id << endl;
+                // cout << " queuing " << v->id << endl;
             }
         }
         u->color = 'b';
@@ -86,5 +86,5 @@ void BFS::printResult(int* result, Graph& graph) {
     for(int i = 0; i < (int) graph.listVertices.size(); i++) {
         cout << result[i] << " ";
     }
-    cout << "]";
+    cout << "]" << endl;
 }
