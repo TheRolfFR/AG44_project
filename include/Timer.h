@@ -11,7 +11,7 @@ class Timer
         Timer(const Timer& other);
         Timer& operator=(const Timer& other);
         void start();
-        long stop();
+        double stop();
     private:
         clock_t theClock;
 };

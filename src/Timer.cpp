@@ -26,6 +26,6 @@ Timer& Timer::operator=(const Timer& rhs)
 void Timer::start() {
     theClock = clock();
 }
-long Timer::stop() {
+double Timer::stop() {
     return (double)(clock() - this->theClock)*1000/CLOCKS_PER_SEC;
 }
