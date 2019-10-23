@@ -35,15 +35,19 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/BFS.h" />
 		<Unit filename="include/Constants.h" />
 		<Unit filename="include/DFS.h" />
 		<Unit filename="include/Edge.h" />
 		<Unit filename="include/Graph.h" />
+		<Unit filename="include/Timer.h" />
 		<Unit filename="include/Vertice.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/BFS.cpp" />
 		<Unit filename="src/DFS.cpp" />
 		<Unit filename="src/Edge.cpp" />
 		<Unit filename="src/Graph.cpp" />
+		<Unit filename="src/Timer.cpp" />
 		<Unit filename="src/Vertice.cpp" />
 		<Extensions>
 			<envvars />
