@@ -5,8 +5,10 @@
 
 class Edge
 {
+    friend class Graph;
     public:
         Edge(int, Vertice*, Vertice*);
+        Edge(int, Vertice*, Vertice*, int);
         virtual ~Edge();
         void setId(int);
         void print();
@@ -17,6 +19,7 @@ class Edge
     private:
         int id;
         short direction;
+        int cost;
         Vertice* src;
         Vertice* dst;
 };

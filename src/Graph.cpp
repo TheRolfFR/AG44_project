@@ -155,6 +155,19 @@ Edge* Graph::getEdge(int id) {
     return result;
 }
 
+Edge* Graph::getEdge (Vertice* src, Vertice* dst)
+{
+    for (int i=0; i<(int)(this->listEdge.size()); ++i)
+    {
+        if (this->listEdge[i].src->id == src->id && this->listEdge[i].dst->id == dst->id)
+        {
+            return &this->listEdge[i];
+        }
+    }
+
+    return NULL;
+}
+
 void Graph::PrintAsMatrix() {
     int digits = getDigits(this->listVertices.size());
     int beforeSpaces;
@@ -293,7 +306,7 @@ Graph Graph::getTransposed() {
     }
 
     // create inverted edges with same ids
-    // add inverted neighbours
+    // add inverted neighbourEdge* getEdge (Vertice*, Vertice*);s
     for(int i = 0; i < (int) this->listEdge.size(); ++i) {
         g.listEdge.push_back(Edge(this->listEdge[i].getId(), g.getVertice(this->listEdge[i].getDstId()), g.getVertice(this->listEdge[i].getSrcId())));
 

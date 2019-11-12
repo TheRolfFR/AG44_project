@@ -12,6 +12,15 @@ Edge::Edge(int id, Vertice* source, Vertice* dest)
     this->id = id;
     this->src = source;
     this->dst = dest;
+    this->cost = 0;
+}
+
+Edge::Edge(int id, Vertice* source, Vertice* dest, int cost)
+{
+    this->id = id;
+    this->src = source;
+    this->dst = dest;
+    this->cost = cost;
 }
 
 Edge::~Edge()
@@ -20,7 +29,7 @@ Edge::~Edge()
 }
 
 void Edge::print() {
-    cout << "edge #" << id << " between " << src->getId() << " and " << dst->getId() << endl;
+    cout << "edge #" << id << " between " << src->getId() << " and " << dst->getId() << " (cost "<< cost <<")" << endl;
 }
 
 int Edge::getId() {

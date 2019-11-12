@@ -20,6 +20,7 @@ class Graph
         void print();
         Vertice* getVertice(int);
         Edge* getEdge(int);
+        Edge* getEdge (Vertice*, Vertice*);
         void PrintAsMatrix();
         void printAsList();
         void saveAsMatrix(const char*);

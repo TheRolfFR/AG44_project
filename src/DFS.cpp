@@ -54,7 +54,7 @@ int* DFS::execute (Graph& graph, int* enterArray)
     this->resultIndex = 0;
     lastResults.push_back(result);
 
-    for (int i = 0; i<graph.listVertices.size();++i)
+    for (int i = 0; i<(int)(graph.listVertices.size());++i)
     {
         graph.listVertices[i].color = 'w';
         graph.listVertices[i].predecessor = NULL;
@@ -65,7 +65,7 @@ int* DFS::execute (Graph& graph, int* enterArray)
 
     this->visit(graph,s);
     // for each element in coming result array
-    for (int i=0;i<graph.listVertices.size();++i)
+    for (int i=0;i<int(graph.listVertices.size());++i)
     {
         if (s[i].color == 'w')
         {

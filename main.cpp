@@ -12,7 +12,9 @@ int main()
     Graph g("testAdgency.txt");
     g.PrintAsMatrix();
     g.printAsList();
-    BFS bfs;
+
+    g.getEdge(2)->print();
+    /*BFS bfs;
     DFS dfs;
     TopologicalSort tps;
 
@@ -21,7 +23,7 @@ int main()
     res = tps.execute(g,g.getVertice(0));
     dfs.print(g, res);
 
-    /*Timer timer;
+    Timer timer;
 
     cout << endl << "BFS: ";
     timer.start();

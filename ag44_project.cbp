@@ -38,6 +38,7 @@
 		<Unit filename="include/BFS.h" />
 		<Unit filename="include/Constants.h" />
 		<Unit filename="include/DFS.h" />
+		<Unit filename="include/Dijkstra.h" />
 		<Unit filename="include/Edge.h" />
 		<Unit filename="include/Graph.h" />
 		<Unit filename="include/StronglyRelated.h" />
@@ -47,6 +48,7 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="src/BFS.cpp" />
 		<Unit filename="src/DFS.cpp" />
+		<Unit filename="src/Dijkstra.cpp" />
 		<Unit filename="src/Edge.cpp" />
 		<Unit filename="src/Graph.cpp" />
 		<Unit filename="src/StronglyRelated.cpp" />
