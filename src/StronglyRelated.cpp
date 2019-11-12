@@ -51,11 +51,11 @@ void StronglyRelated::print (Graph& graph, int* result)
             } else {
                 // not first one and not visited
                 bool hasPredecessor = false;
-                predecessor = graph.getVertice(lastId);
+                predecessor = graph.getVertice(result[i]);
 
                 p = 0;
                 while(p < (int) predecessor->neighbours.size() && !hasPredecessor) {
-                    hasPredecessor = predecessor->neighbours[p]->id == result[i];
+                    hasPredecessor = predecessor->neighbours[p]->id == lastId;
                     ++p;
                 }
 
