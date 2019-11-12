@@ -12,6 +12,7 @@ class DFS
         DFS& operator=(const DFS& other);
 
         int* execute(Graph&, Vertice*);
+        int* execute(Graph&, int*);
         void print(const Graph&, int*);
 
     protected:

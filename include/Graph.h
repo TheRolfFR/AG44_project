@@ -10,6 +10,7 @@ class Graph
     friend class BFS;
     friend class DFS;
     friend class TopologicalSort;
+    friend class StronglyRelated;
     public:
         Graph();
         Graph(int);
@@ -24,6 +25,7 @@ class Graph
         void saveAsMatrix(const char*);
         void saveAsAdjencyList(const char*);
         void loadFromFile(const char*);
+        Graph getTransposed();
 
     private:
         char typeOfGraph; // 'o' for directed, 'n' for undirected
