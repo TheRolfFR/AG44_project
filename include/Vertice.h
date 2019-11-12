@@ -10,6 +10,7 @@ class Vertice
     friend class BFS;
     friend class DFS;
     friend class Graph;
+    friend class StronglyRelated;
     public:
         Vertice(int);
         virtual ~Vertice();
