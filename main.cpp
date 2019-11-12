@@ -8,15 +8,10 @@ using namespace std;
 
 int main()
 {
-<<<<<<< HEAD
-    Graph g("europe.txt");
-    //g.printAsList();
 
-=======
-    Graph g("testAdgency.txt");
-    g.PrintAsMatrix();
+    Graph g("europe.txt");
+
     g.printAsList();
->>>>>>> b634d3012bd7e6b4f197bab948c1e08f69a75e58
     BFS bfs;
     DFS dfs;
     Timer timer;
