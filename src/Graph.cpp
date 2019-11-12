@@ -49,7 +49,8 @@ void Graph::generateRandomGraph(int nVertices, char typeOfGraph) {
 }
 
 Graph::Graph() : typeOfGraph('n') {
-    generateRandomGraph(0, this->typeOfGraph);
+//    generateRandomGraph(0, this->typeOfGraph);
+//    create empty graph
 }
 
 Graph::Graph(int nVertices) : typeOfGraph('n')
@@ -279,4 +280,26 @@ void Graph::loadFromFile(const char filepath[]) {
 
 Graph::~Graph()
 {
+}
+
+Graph Graph::getTransposed() {
+    Graph g;
+
+    g.typeOfGraph = this->typeOfGraph;
+
+    // create all vertices with same ids
+    for(int i = 0; i < (int) this->listVertices.size(); ++i) {
+        g.listVertices.push_back(Vertice(this->listVertices[i].getId()));
+    }
+
+    // create inverted edges with same ids
+    // add inverted neighbours
+    for(int i = 0; i < (int) this->listEdge.size(); ++i) {
+        g.listEdge.push_back(Edge(this->listEdge[i].getId(), g.getVertice(this->listEdge[i].getDstId()), g.getVertice(this->listEdge[i].getSrcId())));
+
+        // add origin vertice to the neighbours of destination vertice
+        g.getVertice(this->listEdge[i].getDstId())->addNeighbour(g.getVertice(this->listEdge[i].getSrcId()));
+    }
+
+    return g;
 }

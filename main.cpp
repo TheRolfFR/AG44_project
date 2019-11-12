@@ -9,23 +9,14 @@ using namespace std;
 int main()
 {
 
-    Graph g("europe.txt");
+    Graph g(19, 'o');
 
-    g.printAsList();
-    BFS bfs;
-    DFS dfs;
-    Timer timer;
+    g.PrintAsMatrix();
 
-    cout << endl << "BFS: ";
-    timer.start();
-    int* result = bfs.execute(g, g.getVertice(6));
-    cout << timer.stop() << "s" << endl;
-    bfs.printResult(result, g);
+    cout << "2*transposed: " << endl;
+    Graph h = g.getTransposed();
+    Graph i = h.getTransposed();
+    i.PrintAsMatrix();
 
-    cout << "DFS: ";
-    timer.start();
-    int* res = dfs.execute(g, g.getVertice(6));
-    cout << timer.stop() << "s" << endl;
-    dfs.print(g, res);
     return 0;
 }
