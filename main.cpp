@@ -3,6 +3,7 @@
 #include "DFS.h"
 #include "BFS.h"
 #include "Timer.h"
+#include "TopologicalSort.h"
 
 using namespace std;
 
@@ -13,7 +14,14 @@ int main()
     g.printAsList();
     BFS bfs;
     DFS dfs;
-    Timer timer;
+    TopologicalSort tps;
+
+    int* res = dfs.execute(g, g.getVertice(0));
+    dfs.print(g, res);
+    res = tps.execute(g,g.getVertice(0));
+    dfs.print(g, res);
+
+    /*Timer timer;
 
     cout << endl << "BFS: ";
     timer.start();
@@ -26,5 +34,5 @@ int main()
     int* res = dfs.execute(g, g.getVertice(0));
     cout << timer.stop() << "s" << endl;
     //dfs.print(g, res);
-    return 0;
+    return 0;*/
 }

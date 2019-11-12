@@ -30,14 +30,14 @@ int* DFS::execute (Graph& graph, Vertice* s)
     this->resultIndex = 0;
     lastResults.push_back(result);
 
-    for (int i = 0; i<graph.listVertices.size();++i)
+    for (int i = 0; i<int(graph.listVertices.size());++i)
     {
         graph.listVertices[i].color = 'w';
         graph.listVertices[i].predecessor = NULL;
     }
     this->time = 0;
     this->visit(graph,s);
-    for (int i=0;i<graph.listVertices.size();++i)
+    for (int i=0;i<int(graph.listVertices.size());++i)
     {
         if (graph.listVertices[i].color == 'w')
         {
@@ -53,7 +53,7 @@ void DFS::visit (Graph& graph,Vertice* u)
     ++ this->time;
     u->dist = this->time;
     u->color = 'g';
-    for (int i=0; i < u->neighbours.size(); ++i)
+    for (int i=0; i < int(u->neighbours.size()); ++i)
     {
         if (u->neighbours[i]->color == 'w')
         {

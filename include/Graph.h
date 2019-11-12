@@ -9,6 +9,7 @@ class Graph
 {
     friend class BFS;
     friend class DFS;
+    friend class TopologicalSort;
     public:
         Graph();
         Graph(int);

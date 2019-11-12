@@ -41,6 +41,7 @@
 		<Unit filename="include/Edge.h" />
 		<Unit filename="include/Graph.h" />
 		<Unit filename="include/Timer.h" />
+		<Unit filename="include/TopologicalSort.h" />
 		<Unit filename="include/Vertice.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/BFS.cpp" />
@@ -48,6 +49,7 @@
 		<Unit filename="src/Edge.cpp" />
 		<Unit filename="src/Graph.cpp" />
 		<Unit filename="src/Timer.cpp" />
+		<Unit filename="src/TopologicalSort.cpp" />
 		<Unit filename="src/Vertice.cpp" />
 		<Extensions>
 			<envvars />
