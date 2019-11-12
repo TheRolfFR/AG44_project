@@ -1,7 +1,7 @@
 #ifndef DFS_H
 #define DFS_H
 #include "Graph.h"
-
+#include "TreeNode.h"
 
 class DFS
 {
@@ -21,6 +21,7 @@ class DFS
         void visit(Graph&, Vertice*);
         int time;
         vector<int*>lastResults;
+        vector<vector<TreeNode>> lastTrees;
         int resultIndex;
 };
 
