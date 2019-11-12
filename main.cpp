@@ -8,7 +8,7 @@ using namespace std;
 
 int main()
 {
-    Graph g(10000, 'o');
+    Graph g("europe.txt");
     //g.printAsList();
 
     BFS bfs;
@@ -17,14 +17,14 @@ int main()
 
     cout << endl << "BFS: ";
     timer.start();
-    int* result = bfs.execute(g, g.getVertice(0));
+    int* result = bfs.execute(g, g.getVertice(6));
     cout << timer.stop() << "s" << endl;
-    //bfs.printResult(result, g);
+    bfs.printResult(result, g);
 
     cout << "DFS: ";
     timer.start();
-    int* res = dfs.execute(g, g.getVertice(0));
+    int* res = dfs.execute(g, g.getVertice(6));
     cout << timer.stop() << "s" << endl;
-    //dfs.print(g, res);
+    dfs.print(g, res);
     return 0;
 }
