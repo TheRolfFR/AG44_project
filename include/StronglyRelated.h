@@ -11,7 +11,8 @@ class StronglyRelated
         virtual ~StronglyRelated();
         StronglyRelated(const StronglyRelated& other);
         StronglyRelated& operator=(const StronglyRelated& other);
-        void execute(Graph& g);
+        int* execute(Graph& g);
+        void print(Graph&, int*); // must not be const
 
     protected:
 
