@@ -13,10 +13,10 @@ class TreeNode
         TreeNode* getParent();
         TreeNode& addLeaf(int);
         TreeNode* getChild(int);
-
-    protected:
-
+        void print();
     private:
+        void print(int);
+
         TreeNode* parent;
         int id;
         std::vector<TreeNode> children;

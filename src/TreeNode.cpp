@@ -45,7 +45,6 @@ TreeNode* TreeNode::getParent() {
 
 TreeNode* TreeNode::getChild(int theId) {
     TreeNode* result = NULL;
-    TreeNode& me = *this;
     if(this->id == theId) {
             result = this;
     }
@@ -58,4 +57,21 @@ TreeNode* TreeNode::getChild(int theId) {
     }
 
     return result;
+}
+
+void TreeNode::print() {
+    // printing pretty message
+    std::cout << std::endl;
+    this->print(0);
+}
+
+void TreeNode::print(int spaces) {
+    // first print the spaces
+    for(int i = 0; i < spaces; ++i) { std::cout << "|"; }
+
+    // print id and go to line
+    std::cout << id << std::endl;
+
+    // then print the children
+    for(int i = 0; i < (int) children.size(); ++i) { children[i].print(spaces+1); }
 }

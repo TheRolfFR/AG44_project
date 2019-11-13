@@ -168,7 +168,7 @@ Edge* Graph::getEdge (Vertice* src, Vertice* dst)
     return NULL;
 }
 
-void Graph::PrintAsMatrix() {
+void Graph::printAsMatrix() {
     int digits = getDigits(this->listVertices.size());
     int beforeSpaces;
 
@@ -222,7 +222,7 @@ void Graph::loadFromFile(const char filepath[]) {
     file >> line;
     int length = atoi(line.c_str());
     int value;
-    cout << "file with " << length << "vertices" << endl;
+    cout << "file with " << length << " vertices" << endl;
 
     file >> line;
     if(line[0] == 'o' || line[0] == 'n') {

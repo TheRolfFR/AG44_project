@@ -29,13 +29,15 @@ int* DFS::execute (Graph& graph, Vertice* s)
     int* result = new int[graph.listVertices.size()];
     this->resultIndex = 0;
     lastResults.push_back(result);
-    lastTrees.push_back(std::vector<TreeNode*>());
+    lastTrees.push_back(vector<TreeNode*>());
 
+    // initailize white
     for (int i = 0; i<int(graph.listVertices.size());++i)
     {
         graph.listVertices[i].color = 'w';
         graph.listVertices[i].predecessor = NULL;
     }
+
     this->time = 0;
     lastTrees.back().push_back(new TreeNode(s->id, NULL));
     this->visit(graph,s);
@@ -45,6 +47,8 @@ int* DFS::execute (Graph& graph, Vertice* s)
     {
         if (graph.listVertices[i].color == 'w')
         {
+            // create tree and root to last tree
+            lastTrees.back().push_back(new TreeNode(graph.listVertices[i].id, NULL));
             this->visit(graph, &graph.listVertices[i]);
         }
     }
@@ -59,6 +63,7 @@ int* DFS::execute (Graph& graph, int* enterArray)
     lastResults.push_back(result);
     lastTrees.push_back(vector<TreeNode*>());
 
+    // initalize white
     for (int i = 0; i<(int)(graph.listVertices.size());++i)
     {
         graph.listVertices[i].color = 'w';
@@ -69,18 +74,18 @@ int* DFS::execute (Graph& graph, int* enterArray)
     // create root
 
     Vertice *s = graph.getVertice(enterArray[0]);
-    lastTrees.back().push_back(new TreeNode(enterArray[0], NULL));
+    lastTrees.back().push_back(new TreeNode(s->id, NULL));
     this->visit(graph,s);
 
     // for each element in coming result array
     for (int i=0;i< (int) graph.listVertices.size();++i)
     {
-        s = graph.getVertice(enterArray[0]);
+        s = graph.getVertice(enterArray[i]);
 
         if (s->color == 'w')
         {
             // create root
-            lastTrees.back().push_back(new TreeNode(s[i].id, NULL));
+            lastTrees.back().push_back(new TreeNode(s->id, NULL));
             this->visit(graph, s);
         }
     }
@@ -118,4 +123,16 @@ void DFS::print (const Graph& graph, int* result)
         cout << result[i] << " ";
     }
     cout << "]" << endl;
+}
+
+void DFS::printLatestTree() {
+    if(!lastTrees.empty()) {
+        // get latest
+        vector<TreeNode*>& v = lastTrees.back();
+
+        // for each tree
+        for(int i = 0; i < (int) v.size(); ++i) {
+            v[i]->print();
+        }
+    }
 }

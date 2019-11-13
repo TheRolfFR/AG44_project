@@ -5,6 +5,7 @@
 
 class DFS
 {
+    friend class StronglyRelated;
     public:
         DFS();
         virtual ~DFS();
@@ -14,6 +15,7 @@ class DFS
         int* execute(Graph&, Vertice*);
         int* execute(Graph&, int*);
         void print(const Graph&, int*);
+        void printLatestTree();
 
     protected:
 

@@ -21,7 +21,7 @@ class Graph
         Vertice* getVertice(int);
         Edge* getEdge(int);
         Edge* getEdge (Vertice*, Vertice*);
-        void PrintAsMatrix();
+        void printAsMatrix();
         void printAsList();
         void saveAsMatrix(const char*);
         void saveAsAdjencyList(const char*);
