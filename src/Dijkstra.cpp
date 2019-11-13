@@ -34,6 +34,10 @@ bool Dijkstra::execute(Graph& g, int src, int dest){
         return false;
     }
 
+    for(int a = 0; a < g.listVertices.size(); ++a) {
+        g.listVertices[a].predecessor = NULL;
+    }
+
     g.getVertice(src)->predecessor = NULL;
 
     int Max = numeric_limits<int>::max();
@@ -46,6 +50,7 @@ bool Dijkstra::execute(Graph& g, int src, int dest){
     cost[src] = 0;
     setdest.insert(make_pair(cost[src], src));
     while (!setdest.empty() ){
+
         tmp = setdest.begin();
         int u = (*tmp).second;
         setdest.erase(setdest.begin());
@@ -70,7 +75,7 @@ bool Dijkstra::execute(Graph& g, int src, int dest){
                     setdest.erase(setdest.find(make_pair(cost[v], v)));
                 }
 
-                // increase weight
+                // increase cost
                 cost[v] = cost[u] + weight;
 
                 // insert pair of cost
@@ -82,16 +87,25 @@ bool Dijkstra::execute(Graph& g, int src, int dest){
         }
     }
 
+    if(g.getVertice(dest)->predecessor == NULL) {
+        cout << "no path to destination" << endl;
+
+        return false;
+    }
+
+
     int curr = dest;
     cout << curr << "; ";
 
     // while the current Vertice is different from the source
     while (curr != src){
         // get the source id of current edge in list
-        Edge* edge = g.getEdge(g.getVertice(curr), g.getVertice(curr)->predecessor);
+        Edge* edge = g.getEdge(g.getVertice(curr)->predecessor, g.getVertice(curr));
 
         // increase path distance
-        PathDistance += edge->cost;
+        // PB HERE
+        if(edge != NULL)
+            PathDistance += edge->cost;
 
         // update current to predecessor
         curr = g.listVertices[curr].predecessor->id;
