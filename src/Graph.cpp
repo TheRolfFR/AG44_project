@@ -48,8 +48,36 @@ void Graph::generateRandomGraph(int nVertices, char typeOfGraph) {
     }
 }
 
+void Graph::generateRandomGraph(int nVertices, char typeOfGraph, int minCost, int maxCost) {
+    if(nVertices > 0) {
+        srand(time(NULL));
+
+        for(int i = 0; i < nVertices; i++) {
+            this->listVertices.push_back(Vertice(i));
+        }
+
+        int id = 0;
+        for(int a = 0; a < nVertices; a++) {
+            for(int b = 0; b < nVertices; b++) {
+                int valRandom = rand()%(maxCost-minCost+1)+minCost;
+                cout<<valRandom<<endl;
+                if(a != b && rand()%6 == 1) {
+                    this->listEdge.push_back(Edge(id, &this->listVertices[a], &this->listVertices[b],valRandom));
+                    if(typeOfGraph == 'n')
+                        this->listEdge.push_back(Edge(id, &this->listVertices[b], &this->listVertices[a],valRandom)); // DIAGONAL
+                    id++;
+                    this->listVertices[a].addNeighbour(&this->listVertices[b]);
+                }
+            }
+        }
+    } else {
+        cerr << "needs a positive number of vertices, given " << nVertices;
+        exit(-1);
+    }
+}
+
 Graph::Graph() : typeOfGraph('n') {
-//    generateRandomGraph(0, this->typeOfGraph);
+//    generateRandomGrvoid Graph::generateRandomGraph(int nVertices, char typeOfGraph, int minCost, int maxCost) {aph(0, this->typeOfGraph);
 //    create empty graph
 }
 
@@ -64,6 +92,10 @@ Graph::Graph(int nVertices, char tOfGraph): typeOfGraph(tOfGraph) {
 
 Graph::Graph(const char* filepath) {
     loadFromFile(filepath);
+}
+
+Graph::Graph(int nVertices, char tOfGraph, int minCost, int maxCost): typeOfGraph(tOfGraph) {
+    generateRandomGraph(nVertices, this->typeOfGraph,minCost,maxCost);
 }
 
 void Graph::print() {
@@ -129,9 +161,13 @@ void Graph::saveAsMatrix(const char filepath[]) {
     for(int i = 0; i < length; ++i) {
         for(int j = 0; j < length; ++j) {
             if(this->isLinked(listVertices[i].id, listVertices[j].id)) {
-                file << "1";
+                for (int k=0; k<4-getDigits(this->getEdge(&listVertices[i], &listVertices[j])->cost); ++k)
+                {
+                    file << " ";
+                }
+                file << this->getEdge(&listVertices[i], &listVertices[j])->cost;
             } else {
-                file << "0";
+                file << "   0";
             }
             file << " ";
         }
@@ -177,7 +213,7 @@ void Graph::PrintAsMatrix() {
 
     // header numbers
     for(int i = 0; i < (int) this->listVertices.size(); i++) {
-        cout << this->listVertices.at(i).getId() << " ";
+        cout << this->listVertices.at(i).getId() << "    ";
     }
     cout << endl;
 
@@ -187,7 +223,7 @@ void Graph::PrintAsMatrix() {
 
         // before spaces
         beforeSpaces = digits - getDigits(this->listVertices[i].getId());
-        for(int a = 0; a < beforeSpaces; a++) { cout << " "; }
+        for(int a = 0; a < beforeSpaces; a++) { cout << "  "; }
 
         for(int a = 0; a < (int) this->listVertices.size(); a++) {
             // before spaces
@@ -196,9 +232,13 @@ void Graph::PrintAsMatrix() {
 
             // print relation
             if(isLinked(this->listVertices[i].getId(), this->listVertices[a].getId())) {
-                cout << " X";
+                cout << this->getEdge(&listVertices[i], &listVertices[a])->cost;
+                for (int k=0; k<5-getDigits(this->getEdge(&listVertices[i], &listVertices[a])->cost); ++k)
+                    {
+                        cout << " ";
+                    }
             } else {
-                cout << "  ";
+                cout << "     ";
             }
         }
         cout << endl;
@@ -242,10 +282,10 @@ void Graph::loadFromFile(const char filepath[]) {
                 for(int srcIndex = 0; srcIndex < length; ++srcIndex) {
                     for(int dstIndex = 0; dstIndex < length; ++dstIndex) {
                         file >> value;
-                        if(value == 1) {
-                            this->listEdge.push_back(Edge(srcIndex, &listVertices[srcIndex], &listVertices[dstIndex]));
+                        if(value != 0) {
+                            this->listEdge.push_back(Edge(srcIndex, &listVertices[srcIndex], &listVertices[dstIndex],value));
                             if(notdirected)
-                                this->listEdge.push_back(Edge(srcIndex, &listVertices[dstIndex], &listVertices[srcIndex]));
+                                this->listEdge.push_back(Edge(srcIndex, &listVertices[dstIndex], &listVertices[srcIndex],value));
 
                             this->listVertices[srcIndex].addNeighbour(&this->listVertices[dstIndex]);
                         }

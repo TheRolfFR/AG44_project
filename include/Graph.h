@@ -16,6 +16,7 @@ class Graph
         Graph(int);
         Graph(int, char);
         Graph(const char *);
+        Graph(int, char, int, int);
         virtual ~Graph();
         void print();
         Vertice* getVertice(int);
@@ -35,6 +36,7 @@ class Graph
         int ** cost;
         bool isLinked(int, int);
         void generateRandomGraph(int, char);
+        void generateRandomGraph(int, char, int, int);
 };
 
 #endif // GRAPH_H
