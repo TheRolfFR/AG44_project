@@ -26,8 +26,11 @@ Dijkstra& Dijkstra::operator=(const Dijkstra& rhs)
 }
 
 bool Dijkstra::execute(Graph& g, int src, int dest){
+    cout << "=== Dijkstra result : " << src << "->" << dest << " ===" << endl;
+
     int PathDistance=0;
     if ((g.getVertice(src)->neighbours.size()==0)  ||  (src==dest)) {
+        cout << "Source has no neighbours or source equals destination" << endl;
         return false;
     }
 

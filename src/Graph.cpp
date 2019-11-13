@@ -60,7 +60,6 @@ void Graph::generateRandomGraph(int nVertices, char typeOfGraph, int minCost, in
         for(int a = 0; a < nVertices; a++) {
             for(int b = 0; b < nVertices; b++) {
                 int valRandom = rand()%(maxCost-minCost+1)+minCost;
-                cout<<valRandom<<endl;
                 if(a != b && rand()%6 == 1) {
                     this->listEdge.push_back(Edge(id, &this->listVertices[a], &this->listVertices[b],valRandom));
                     if(typeOfGraph == 'n')
@@ -243,6 +242,8 @@ void Graph::printAsMatrix() {
         }
         cout << endl;
     }
+
+    cout << endl;
 }
 
 bool Graph::isLinked(int srcId, int dstId) {
