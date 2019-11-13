@@ -1,7 +1,6 @@
 #ifndef STRONGLYRELATED_H
 #define STRONGLYRELATED_H
-#include "DFS.h"
-
+#include "TopologicalSort.h"
 
 class StronglyRelated
 {
@@ -12,12 +11,13 @@ class StronglyRelated
         StronglyRelated(const StronglyRelated& other);
         StronglyRelated& operator=(const StronglyRelated& other);
         int* execute(Graph& g);
-        void print(Graph&, int*); // must not be const
+        void printLatestTree(); // must not be const
 
     protected:
 
     private:
         DFS dfs;
+        TopologicalSort tos;
 };
 
 #endif // STRONGLYRELATED_H

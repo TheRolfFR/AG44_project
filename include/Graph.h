@@ -11,6 +11,8 @@ class Graph
     friend class DFS;
     friend class TopologicalSort;
     friend class StronglyRelated;
+    friend class Dijkstra;
+
     public:
         Graph();
         Graph(int);
@@ -22,7 +24,7 @@ class Graph
         Vertice* getVertice(int);
         Edge* getEdge(int);
         Edge* getEdge (Vertice*, Vertice*);
-        void PrintAsMatrix();
+        void printAsMatrix();
         void printAsList();
         void saveAsMatrix(const char*);
         void saveAsAdjencyList(const char*);
