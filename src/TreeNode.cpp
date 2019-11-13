@@ -10,7 +10,6 @@ TreeNode::TreeNode(int id, TreeNode* parent) {
     this->parent = parent;
     this->id = id;
     this->children = std::vector<TreeNode>();
-    std::cout << children.size();
 }
 
 TreeNode::~TreeNode()

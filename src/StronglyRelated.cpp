@@ -31,10 +31,6 @@ int* StronglyRelated::execute(Graph& g) {
 void StronglyRelated::print (Graph& graph, int* result)
 {
     Graph h = graph.getTransposed();
-    h.PrintAsMatrix();
-
-    dfs.print(graph, result);
-    cout << endl;
 
     // reset colors
     for(int i = 0; i < (int) h.listVertices.size(); ++i) {

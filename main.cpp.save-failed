@@ -1,0 +1,17 @@
+#include <iostream>
+#include "include/Graph.h"
+#include "StronglyRelated.h"
+
+using namespace std;
+
+int main()
+{
+    Graph g("exStronglyConnected.txt");
+    g.PrintAsMatrix();
+
+    StronglyRelated sr;
+    int* result = sr.execute(g);
+    sr.print(g, result);
+
+    return 0;
+}
