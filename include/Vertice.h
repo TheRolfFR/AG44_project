@@ -11,6 +11,7 @@ class Vertice
     friend class DFS;
     friend class Graph;
     friend class StronglyRelated;
+    friend class Dijkstra;
     public:
         Vertice(int);
         virtual ~Vertice();

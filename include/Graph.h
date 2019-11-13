@@ -11,6 +11,8 @@ class Graph
     friend class DFS;
     friend class TopologicalSort;
     friend class StronglyRelated;
+    friend class Dijkstra;
+
     public:
         Graph();
         Graph(int);
