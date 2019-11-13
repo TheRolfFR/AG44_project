@@ -29,7 +29,7 @@ int* DFS::execute (Graph& graph, Vertice* s)
     int* result = new int[graph.listVertices.size()];
     this->resultIndex = 0;
     lastResults.push_back(result);
-    lastTrees.push_back(std::vector<TreeNode>());
+    lastTrees.push_back(std::vector<TreeNode*>());
 
     for (int i = 0; i<int(graph.listVertices.size());++i)
     {
@@ -37,6 +37,7 @@ int* DFS::execute (Graph& graph, Vertice* s)
         graph.listVertices[i].predecessor = NULL;
     }
     this->time = 0;
+    lastTrees.back().push_back(new TreeNode(s->id, NULL));
     this->visit(graph,s);
 
     // other strongly connected components
@@ -56,7 +57,7 @@ int* DFS::execute (Graph& graph, int* enterArray)
     int* result = new int[graph.listVertices.size()];
     this->resultIndex = 0;
     lastResults.push_back(result);
-    lastTrees.push_back(std::vector<TreeNode>());
+    lastTrees.push_back(vector<TreeNode*>());
 
     for (int i = 0; i<(int)(graph.listVertices.size());++i)
     {
@@ -68,8 +69,7 @@ int* DFS::execute (Graph& graph, int* enterArray)
     // create root
 
     Vertice *s = graph.getVertice(enterArray[0]);
-    lastTrees.back().push_back(TreeNode(enterArray[0], NULL));
-
+    lastTrees.back().push_back(new TreeNode(enterArray[0], NULL));
     this->visit(graph,s);
 
     // for each element in coming result array
@@ -80,7 +80,7 @@ int* DFS::execute (Graph& graph, int* enterArray)
         if (s->color == 'w')
         {
             // create root
-            lastTrees.back().push_back(TreeNode(s[i].id, NULL));
+            lastTrees.back().push_back(new TreeNode(s[i].id, NULL));
             this->visit(graph, s);
         }
     }
@@ -94,8 +94,10 @@ void DFS::visit (Graph& graph,Vertice* u)
     u->dist = this->time;
     u->color = 'g';
 
-    TreeNode& lastRoot = lastTrees.back().back();
-    TreeNode* me = lastRoot.getChild(u->id);
+    bool e = this->lastTrees.back().empty();
+    TreeNode* lastRoot = this->lastTrees.back().back();
+    TreeNode& lol = *lastRoot;
+    TreeNode* me = lastRoot->getChild(u->id);
 //    TreeNode* me = NULL;
     for (int i=0; i < int(u->neighbours.size()); ++i)
     {

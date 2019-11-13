@@ -21,7 +21,7 @@ class DFS
         void visit(Graph&, Vertice*);
         int time;
         vector<int*>lastResults;
-        vector<vector<TreeNode>> lastTrees;
+        vector<vector<TreeNode*>> lastTrees;
         int resultIndex;
 };
 

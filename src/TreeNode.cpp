@@ -6,9 +6,11 @@ TreeNode::TreeNode() : parent(), id(), children()
     //ctor
 }
 
-TreeNode::TreeNode(int id, TreeNode* parent) : parent(), id(), children() {
+TreeNode::TreeNode(int id, TreeNode* parent) {
     this->parent = parent;
     this->id = id;
+    this->children = std::vector<TreeNode>();
+    std::cout << children.size();
 }
 
 TreeNode::~TreeNode()
@@ -25,9 +27,9 @@ TreeNode& TreeNode::operator=(const TreeNode& rhs)
 {
     if (this == &rhs) return *this; // handle self assignment
     //assignment operator
+    this->parent = rhs.parent;
     this->id = rhs.id;
     this->children = rhs.children;
-    this->parent = rhs.parent;
 
     return *this;
 }
@@ -42,13 +44,16 @@ TreeNode* TreeNode::getParent() {
     return this->parent;
 }
 
-TreeNode* TreeNode::getChild(int id) {
+TreeNode* TreeNode::getChild(int theId) {
     TreeNode* result = NULL;
-    if(this->id == id) { result = this; }
+    TreeNode& me = *this;
+    if(this->id == theId) {
+            result = this;
+    }
 
     int i = 0;
     while(i < (int) children.size() && result == NULL) {
-        result = children[i].getChild(id);
+        result = children[i].getChild(theId);
 
         ++i;
     }
