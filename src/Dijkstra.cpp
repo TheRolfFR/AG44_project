@@ -25,10 +25,20 @@ Dijkstra& Dijkstra::operator=(const Dijkstra& rhs)
     return *this;
 }
 
-/*bool Dijkstra::execute(Graph& g, int src, int dest){
+bool Dijkstra::execute(Graph& g, int src, int dest){
+
+bool Dijkstra::execute(Graph& g, int src, int dest){
+    cout << "=== Dijkstra result : " << src << "->" << dest << " ===" << endl;
+
+
     int PathDistance=0;
     if ((g.getVertice(src)->neighbours.size()==0)  ||  (src==dest)) {
+        cout << "Source has no neighbours or source equals destination" << endl;
         return false;
+    }
+
+    for(int a = 0; a < g.listVertices.size(); ++a) {
+        g.listVertices[a].predecessor = NULL;
     }
 
     g.getVertice(src)->predecessor = NULL;
@@ -43,6 +53,7 @@ Dijkstra& Dijkstra::operator=(const Dijkstra& rhs)
     cost[src] = 0;
     setdest.insert(make_pair(cost[src], src));
     while (!setdest.empty() ){
+
         tmp = setdest.begin();
         int u = (*tmp).second;
         setdest.erase(setdest.begin());
@@ -51,14 +62,14 @@ Dijkstra& Dijkstra::operator=(const Dijkstra& rhs)
 
         // for each neighbour
         for (int i=0;i< (int) g.listVertices[u].neighbours.size();i++){
-            // get neighbour id ?
-            int v = g.listVertices[u].neighbours[i].first;
+            // get neighbour id vertex ext ?
+            int v = g.listVertices[u].neighbours[i]->id;
 
             // get edge id ?
-            int idEdge = g.listVertices[u].neighbours[i].second;
+            int idEdge = g.getEdge(&g.listVertices[u], &g.listVertices[v])->id;
 
             // get edge weight
-            double weight= g.LstEdges[idEdge]->dist;
+            double weight= g.getEdge(idEdge)->cost;
 
             // if neighbour cost is greater than my cost and the weight
             if (cost[v] > cost[u] + weight ){
@@ -67,43 +78,49 @@ Dijkstra& Dijkstra::operator=(const Dijkstra& rhs)
                     setdest.erase(setdest.find(make_pair(cost[v], v)));
                 }
 
-                // increase weight
+                // increase cost
                 cost[v] = cost[u] + weight;
 
                 // insert pair of cost
                 setdest.insert(make_pair(cost[v], v));
 
                 // make the predecessor of v u
-                g.listVertices[v]->predecessor = u;
-
-                // make ?
-                g.listVertices[v]->PreviousEdgeId = g.listVertices[u].neighbours[i].second;
+                g.listVertices[v].predecessor = g.getVertice(u);
             }
         }
     }
 
+    if(g.getVertice(dest)->predecessor == NULL) {
+        cout << "no path to destination" << endl;
+
+        return false;
+    }
+
+
     int curr = dest;
-    cout << curr->id << "; ";
+    cout << curr << "; ";
 
     // while the current Vertice is different from the source
     while (curr != src){
         // get the source id of current edge in list
-        int idEdge=g.listEdge[curr]->PreviousEdgeId;
-        // get the corresponding edge
-        Edge* edge = g.LstEdges[idEdge];
-        // increase the path distance by its cost
-        PathDistance += edge->dist;
+        Edge* edge = g.getEdge(g.getVertice(curr)->predecessor, g.getVertice(curr));
+
+        // increase path distance
+        // PB HERE
+        if(edge != NULL)
+            PathDistance += edge->cost;
+
         // update current to predecessor
-        curr = g.listEdge[curr]->Pred;
+        curr = g.listVertices[curr].predecessor->id;
 
         // print current edge id
-        cout << curr->id << "; ";
+        cout << curr << "; ";
     }
 
     // go to line
     cout << endl;
 
     // print distance
-    cout<< << "Distance = " << PathDistance << endl;
+    cout << "Distance = " << PathDistance << endl;
     return true;
-}*/
+}

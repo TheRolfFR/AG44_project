@@ -252,6 +252,8 @@ void Graph::printAsMatrix() {
         }
         cout << endl;
     }
+
+    cout << endl;
 }
 
 bool Graph::isLinked(int srcId, int dstId) {
