@@ -232,7 +232,7 @@ void Graph::printAsMatrix() {
 
         // before spaces
         beforeSpaces = digits - getDigits(this->listVertices[i].getId());
-        for(int a = 0; a < beforeSpaces; a++) { cout << "  "; }
+        for(int a = 0; a < beforeSpaces+1; a++) { cout << " "; }
 
         for(int a = 0; a < (int) this->listVertices.size(); a++) {
             // before spaces

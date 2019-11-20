@@ -26,8 +26,6 @@ Dijkstra& Dijkstra::operator=(const Dijkstra& rhs)
 }
 
 bool Dijkstra::execute(Graph& g, int src, int dest){
-
-bool Dijkstra::execute(Graph& g, int src, int dest){
     cout << "=== Dijkstra result : " << src << "->" << dest << " ===" << endl;
 
 
