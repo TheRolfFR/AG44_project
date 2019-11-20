@@ -7,6 +7,7 @@ using namespace std;
 
 class Vertice
 {
+    friend bool compareDistance(Vertice* a, Vertice* b);
     friend class BFS;
     friend class DFS;
     friend class Graph;
@@ -35,3 +36,4 @@ class Vertice
 };
 
 #endif // VERTICE_H
+
