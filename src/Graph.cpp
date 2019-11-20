@@ -34,9 +34,9 @@ void Graph::generateRandomGraph(int nVertices, char typeOfGraph) {
         for(int a = 0; a < nVertices; a++) {
             for(int b = 0; b < nVertices; b++) {
                 if(a != b && rand()%6 == 1) {
-                    this->listEdge.push_back(Edge(id, &this->listVertices[a], &this->listVertices[b]));
+                    this->listEdge.push_back(Edge(id, &this->listVertices[a], &this->listVertices[b],1));
                     if(typeOfGraph == 'n')
-                        this->listEdge.push_back(Edge(id, &this->listVertices[b], &this->listVertices[a])); // DIAGONAL
+                        this->listEdge.push_back(Edge(id, &this->listVertices[b], &this->listVertices[a],1)); // DIAGONAL
                     id++;
                     this->listVertices[a].addNeighbour(&this->listVertices[b]);
                 }
@@ -51,6 +51,16 @@ void Graph::generateRandomGraph(int nVertices, char typeOfGraph) {
 void Graph::generateRandomGraph(int nVertices, char typeOfGraph, int minCost, int maxCost) {
     if(nVertices > 0) {
         srand(time(NULL));
+        if (minCost<0)
+        {
+            minCost = 1;
+            cout<<"le cout minimum doit être superieur ou égal à 1"<<endl<<"cout minimum initialisé à 1"<<endl;
+        }
+        if (maxCost < minCost)
+        {
+            maxCost = minCost;
+            cout<<"le cout maximum doit être superieur ou égal au cout minimum"<<endl<<"cout maximumum initialisé à "<<minCost<<endl;
+        }
 
         for(int i = 0; i < nVertices; i++) {
             this->listVertices.push_back(Vertice(i));
@@ -60,7 +70,6 @@ void Graph::generateRandomGraph(int nVertices, char typeOfGraph, int minCost, in
         for(int a = 0; a < nVertices; a++) {
             for(int b = 0; b < nVertices; b++) {
                 int valRandom = rand()%(maxCost-minCost+1)+minCost;
-                cout<<valRandom<<endl;
                 if(a != b && rand()%6 == 1) {
                     this->listEdge.push_back(Edge(id, &this->listVertices[a], &this->listVertices[b],valRandom));
                     if(typeOfGraph == 'n')
@@ -279,10 +288,16 @@ void Graph::loadFromFile(const char filepath[]) {
                 // we have a matrix
 
                 // then we make the edges between the vertices thanks to the file
+                bool t = false;
                 for(int srcIndex = 0; srcIndex < length; ++srcIndex) {
                     for(int dstIndex = 0; dstIndex < length; ++dstIndex) {
                         file >> value;
                         if(value != 0) {
+                            if (value<0)
+                            {
+                                value = 1;
+                                t=true;
+                            }
                             this->listEdge.push_back(Edge(srcIndex, &listVertices[srcIndex], &listVertices[dstIndex],value));
                             if(notdirected)
                                 this->listEdge.push_back(Edge(srcIndex, &listVertices[dstIndex], &listVertices[srcIndex],value));
@@ -293,6 +308,8 @@ void Graph::loadFromFile(const char filepath[]) {
                     }
                     // file >> endl;
                 }
+                if (t)
+                    cout << "toutes les valeures < 0 ont été initialisées à 1";
 
                 file.close();
                 return;

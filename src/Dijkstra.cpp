@@ -25,7 +25,7 @@ Dijkstra& Dijkstra::operator=(const Dijkstra& rhs)
     return *this;
 }
 
-bool Dijkstra::execute(Graph& g, int src, int dest){
+/*bool Dijkstra::execute(Graph& g, int src, int dest){
     int PathDistance=0;
     if ((g.getVertice(src)->neighbours.size()==0)  ||  (src==dest)) {
         return false;
@@ -106,4 +106,4 @@ bool Dijkstra::execute(Graph& g, int src, int dest){
     // print distance
     cout<< << "Distance = " << PathDistance << endl;
     return true;
-}
+}*/
