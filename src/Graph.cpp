@@ -54,6 +54,16 @@ void Graph::generateRandomGraph(int nVertices, char typeOfGraph) {
 void Graph::generateRandomGraph(int nVertices, char typeOfGraph, int minCost, int maxCost, bool complete) {
     if(nVertices > 0) {
         srand(time(NULL));
+        if (minCost<0)
+        {
+            minCost = 1;
+            cout<<"le cout minimum doit être superieur ou égal à 1"<<endl<<"cout minimum initialisé à 1"<<endl;
+        }
+        if (maxCost < minCost)
+        {
+            maxCost = minCost;
+            cout<<"le cout maximum doit être superieur ou égal au cout minimum"<<endl<<"cout maximumum initialisé à "<<minCost<<endl;
+        }
 
         for(int i = 0; i < nVertices; i++) {
             this->listVertices.push_back(Vertice(i));
@@ -231,7 +241,7 @@ void Graph::printAsMatrix() {
 
         // before spaces
         beforeSpaces = digits - getDigits(this->listVertices[i].getId());
-        for(int a = 0; a < beforeSpaces; a++) { cout << "  "; }
+        for(int a = 0; a < beforeSpaces+1; a++) { cout << " "; }
 
         for(int a = 0; a < (int) this->listVertices.size(); a++) {
             // before spaces
@@ -289,10 +299,16 @@ void Graph::loadFromFile(const char filepath[]) {
                 // we have a matrix
 
                 // then we make the edges between the vertices thanks to the file
+                bool t = false;
                 for(int srcIndex = 0; srcIndex < length; ++srcIndex) {
                     for(int dstIndex = 0; dstIndex < length; ++dstIndex) {
                         file >> value;
                         if(value != 0) {
+                            if (value<0)
+                            {
+                                value = 1;
+                                t=true;
+                            }
                             this->listEdge.push_back(Edge(srcIndex, &listVertices[srcIndex], &listVertices[dstIndex],value));
                             if(notdirected)
                                 this->listEdge.push_back(Edge(srcIndex, &listVertices[dstIndex], &listVertices[srcIndex],value));
@@ -303,6 +319,8 @@ void Graph::loadFromFile(const char filepath[]) {
                     }
                     // file >> endl;
                 }
+                if (t)
+                    cout << "toutes les valeures < 0 ont été initialisées à 1";
 
                 file.close();
                 return;

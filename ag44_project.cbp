@@ -40,6 +40,7 @@
 		<Unit filename="include/DFS.h" />
 		<Unit filename="include/Dijkstra.h" />
 		<Unit filename="include/Edge.h" />
+		<Unit filename="include/Graph.h" />
 		<Unit filename="include/StronglyRelated.h" />
 		<Unit filename="include/Timer.h" />
 		<Unit filename="include/TopologicalSort.h" />
