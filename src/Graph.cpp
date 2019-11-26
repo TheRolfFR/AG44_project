@@ -278,7 +278,7 @@ void Graph::loadFromFile(const char filepath[]) {
     file >> line;
     if(line[0] == 'o' || line[0] == 'n') {
         bool notdirected = line[0] == 'n';
-
+        this->typeOfGraph=line[0];
         file >> line;
         if(line[0] == 'm' || line[0] == 'l') {
             // first we make "length" vertices
@@ -329,9 +329,9 @@ void Graph::loadFromFile(const char filepath[]) {
 
                     while (iss>>destinationVertice)
                     {
-                        this->listEdge.push_back(Edge(originVertice, &listVertices[originVertice], &listVertices[destinationVertice]));
+                        this->listEdge.push_back(Edge(originVertice, &listVertices[originVertice], &listVertices[destinationVertice],1));
                         if(notdirected)
-                            this->listEdge.push_back(Edge(originVertice, &listVertices[destinationVertice], &listVertices[originVertice]));
+                            this->listEdge.push_back(Edge(originVertice, &listVertices[destinationVertice], &listVertices[originVertice],1));
                         // louis you forgot this important line
                         this->listVertices[originVertice].addNeighbour(&this->listVertices[destinationVertice]);
                     }
