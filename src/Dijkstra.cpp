@@ -1,4 +1,5 @@
 #include <iostream>
+#include <bits/stdc++.h>
 #include <limits>
 #include <set>
 #include "Dijkstra.h"
@@ -35,7 +36,7 @@ bool Dijkstra::execute(Graph& g, int src, int dest){
         return false;
     }
 
-    for(int a = 0; a < g.listVertices.size(); ++a) {
+    for(int a = 0; a < (int) g.listVertices.size(); ++a) {
         g.listVertices[a].predecessor = NULL;
     }
 
@@ -121,4 +122,25 @@ bool Dijkstra::execute(Graph& g, int src, int dest){
     // print distance
     cout << "Distance = " << PathDistance << endl;
     return true;
+}
+
+bool compareDistance(Vertice* a, Vertice* b) {
+    if(a->dist == -1) {
+        return false;
+    }
+    if(b->dist == -1) {
+        return true;
+    }
+
+    return a->dist < b->dist;
+}
+
+Vertice* extractMin(vector<Vertice*>& verticesList) {
+    Vertice* result = NULL;
+    sort(verticesList.begin(), verticesList.end(), compareDistance);
+
+    result = verticesList.front();
+    verticesList.erase(verticesList.begin());
+
+    return result;
 }

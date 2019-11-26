@@ -34,11 +34,14 @@ void Graph::generateRandomGraph(int nVertices, char typeOfGraph) {
         for(int a = 0; a < nVertices; a++) {
             for(int b = 0; b < nVertices; b++) {
                 if(a != b && rand()%6 == 1) {
-                    this->listEdge.push_back(Edge(id, &this->listVertices[a], &this->listVertices[b],1));
-                    if(typeOfGraph == 'n')
-                        this->listEdge.push_back(Edge(id, &this->listVertices[b], &this->listVertices[a],1)); // DIAGONAL
-                    id++;
+                    this->listEdge.push_back(Edge(id, &this->listVertices[a], &this->listVertices[b]));
                     this->listVertices[a].addNeighbour(&this->listVertices[b]);
+
+                    if(typeOfGraph == 'n') {
+                        this->listEdge.push_back(Edge(id, &this->listVertices[b], &this->listVertices[a])); // DIAGONAL
+                        this->listVertices[b].addNeighbour(&this->listVertices[a]);
+                    }
+                    id++;
                 }
             }
         }
@@ -48,7 +51,7 @@ void Graph::generateRandomGraph(int nVertices, char typeOfGraph) {
     }
 }
 
-void Graph::generateRandomGraph(int nVertices, char typeOfGraph, int minCost, int maxCost) {
+void Graph::generateRandomGraph(int nVertices, char typeOfGraph, int minCost, int maxCost, bool complete) {
     if(nVertices > 0) {
         srand(time(NULL));
         if (minCost<0)
@@ -70,12 +73,15 @@ void Graph::generateRandomGraph(int nVertices, char typeOfGraph, int minCost, in
         for(int a = 0; a < nVertices; a++) {
             for(int b = 0; b < nVertices; b++) {
                 int valRandom = rand()%(maxCost-minCost+1)+minCost;
-                if(a != b && rand()%6 == 1) {
+                if(a != b && (complete || rand()%6 == 1)) {
                     this->listEdge.push_back(Edge(id, &this->listVertices[a], &this->listVertices[b],valRandom));
-                    if(typeOfGraph == 'n')
-                        this->listEdge.push_back(Edge(id, &this->listVertices[b], &this->listVertices[a],valRandom)); // DIAGONAL
-                    id++;
                     this->listVertices[a].addNeighbour(&this->listVertices[b]);
+
+                    if(typeOfGraph == 'n') {
+                        this->listEdge.push_back(Edge(id, &this->listVertices[b], &this->listVertices[a],valRandom)); // DIAGONAL
+                        this->listVertices[b].addNeighbour(&this->listVertices[a]);
+                    }
+                    id++;
                 }
             }
         }
@@ -104,7 +110,10 @@ Graph::Graph(const char* filepath) {
 }
 
 Graph::Graph(int nVertices, char tOfGraph, int minCost, int maxCost): typeOfGraph(tOfGraph) {
-    generateRandomGraph(nVertices, this->typeOfGraph,minCost,maxCost);
+    generateRandomGraph(nVertices, typeOfGraph, minCost, maxCost, false);
+}
+Graph::Graph(int nVertices, char typeOfGraph, int minCost, int maxCost, bool complete): typeOfGraph(typeOfGraph) {
+    generateRandomGraph(nVertices, typeOfGraph, minCost, maxCost, complete);
 }
 
 void Graph::print() {
