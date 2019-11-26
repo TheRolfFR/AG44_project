@@ -29,21 +29,19 @@ void Kruskal::EraseElementFromVector(vector<TreeNode*> myvector, TreeNode* node)
         return;
 
     int i = 0;
-    bool found = false;
-    while(i < (int) myvector.size() && !found) {
+    int foundIndex = -1;
+    while(i < (int) myvector.size() && foundIndex != -1) {
         if(myvector[i]->id == node->id)
-            found = true;
+            foundIndex = i;
 
         ++i;
     }
-
-    if(found)
-        myvector.erase(myvector.begin()+i);
 }
 
-vector<TreeNode*> Kruskal::execute(Graph& g) {
+std::vector<TreeNode*> Kruskal::execute(Graph& g) {
+            std::cout << "coucou";
     // creating a result
-    vector<TreeNode*> result;
+    std::vector<TreeNode*> result = std::vector<TreeNode*>();
 
     //sorting the edges by increasing order
     sort(g.listEdge.begin(), g.listEdge.end());
@@ -108,4 +106,10 @@ vector<TreeNode*> Kruskal::execute(Graph& g) {
     }
 
     return result;
+}
+
+void Kruskal::print(std::vector<TreeNode*> trees) {
+    for(int i = 0; i < (int) trees.size(); ++i) {
+        trees[i]->print();
+    }
 }

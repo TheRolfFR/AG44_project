@@ -11,7 +11,8 @@ class Kruskal
         virtual ~Kruskal();
         Kruskal(const Kruskal& other);
         Kruskal& operator=(const Kruskal& other);
-        void EraseElementFromVector(vector<TreeNode*>, TreeNode*);
+        void EraseElementFromVector(std::vector<TreeNode*>, TreeNode*);
+        void print(std::vector<TreeNode*>);
         std::vector<TreeNode*> execute(Graph&);
 
     protected:
