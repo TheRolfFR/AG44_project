@@ -7,6 +7,9 @@ class Edge
 {
     friend class Graph;
     friend class Dijkstra;
+    friend bool operator<(Edge&, Edge&);
+    friend class Kruskal;
+
     public:
         Edge(int, Vertice*, Vertice*);
         Edge(int, Vertice*, Vertice*, int);
@@ -24,5 +27,7 @@ class Edge
         Vertice* src;
         Vertice* dst;
 };
+
+bool operator<(Edge&, Edge&);
 
 #endif // EDGE_H

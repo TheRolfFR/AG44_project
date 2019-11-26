@@ -43,3 +43,7 @@ int Edge::getSrcId() {
 int Edge::getDstId() {
     return this->dst->getId();
 }
+
+bool operator<(Edge& edge1, Edge& edge2) {
+    return edge1.cost < edge2.cost;
+}

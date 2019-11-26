@@ -9,7 +9,7 @@ TreeNode::TreeNode() : parent(), id(), children()
 TreeNode::TreeNode(int id, TreeNode* parent) {
     this->parent = parent;
     this->id = id;
-    this->children = std::vector<TreeNode>();
+    this->children = std::vector<TreeNode*>();
 }
 
 TreeNode::~TreeNode()
@@ -33,10 +33,15 @@ TreeNode& TreeNode::operator=(const TreeNode& rhs)
     return *this;
 }
 
-TreeNode& TreeNode::addLeaf(int id) {
-    this->children.push_back(TreeNode(id, this));
+TreeNode* TreeNode::addLeaf(int id) {
+    this->children.push_back(new TreeNode(id, this));
 
     return this->children.back();
+}
+
+void TreeNode::addChild(TreeNode* child) {
+    this->children.push_back(child);
+    child->parent = this;
 }
 
 TreeNode* TreeNode::getParent() {
@@ -51,7 +56,7 @@ TreeNode* TreeNode::getChild(int theId) {
 
     int i = 0;
     while(i < (int) children.size() && result == NULL) {
-        result = children[i].getChild(theId);
+        result = children[i]->getChild(theId);
 
         ++i;
     }
@@ -73,5 +78,5 @@ void TreeNode::print(int spaces) {
     std::cout << id << std::endl;
 
     // then print the children
-    for(int i = 0; i < (int) children.size(); ++i) { children[i].print(spaces+1); }
+    for(int i = 0; i < (int) children.size(); ++i) { children[i]->print(spaces+1); }
 }
