@@ -13,6 +13,7 @@ class Graph
     friend class StronglyRelated;
     friend class Dijkstra;
     friend class WarshallFloyd;
+    friend class Kruskal;
 
     public:
         Graph();

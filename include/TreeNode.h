@@ -4,6 +4,7 @@
 
 class TreeNode
 {
+    friend class Kruskal;
     public:
         TreeNode();
         TreeNode(int, TreeNode*);
@@ -11,15 +12,16 @@ class TreeNode
         TreeNode(const TreeNode& other);
         TreeNode& operator=(const TreeNode& other);
         TreeNode* getParent();
-        TreeNode& addLeaf(int);
+        TreeNode* addLeaf(int);
         TreeNode* getChild(int);
+        void addChild(TreeNode*);
         void print();
     private:
         void print(int);
 
         TreeNode* parent;
         int id;
-        std::vector<TreeNode> children;
+        std::vector<TreeNode*> children;
 };
 
 #endif // TREENODE_H

@@ -41,6 +41,7 @@
 		<Unit filename="include/Dijkstra.h" />
 		<Unit filename="include/Edge.h" />
 		<Unit filename="include/Graph.h" />
+		<Unit filename="include/Kruskal.h" />
 		<Unit filename="include/StronglyRelated.h" />
 		<Unit filename="include/Timer.h" />
 		<Unit filename="include/TopologicalSort.h" />
@@ -53,6 +54,7 @@
 		<Unit filename="src/Dijkstra.cpp" />
 		<Unit filename="src/Edge.cpp" />
 		<Unit filename="src/Graph.cpp" />
+		<Unit filename="src/Kruskal.cpp" />
 		<Unit filename="src/StronglyRelated.cpp" />
 		<Unit filename="src/Timer.cpp" />
 		<Unit filename="src/TopologicalSort.cpp" />
