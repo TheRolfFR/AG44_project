@@ -12,6 +12,7 @@ class Graph
     friend class TopologicalSort;
     friend class StronglyRelated;
     friend class Dijkstra;
+    friend class WarshallFloyd;
 
     public:
         Graph();

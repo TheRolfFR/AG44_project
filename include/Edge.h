@@ -7,6 +7,7 @@ class Edge
 {
     friend class Graph;
     friend class Dijkstra;
+    friend class WarshallFloyd;
     public:
         Edge(int, Vertice*, Vertice*);
         Edge(int, Vertice*, Vertice*, int);

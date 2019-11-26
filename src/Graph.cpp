@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <limits>
 
 using namespace std;
 
@@ -54,7 +55,7 @@ void Graph::generateRandomGraph(int nVertices, char typeOfGraph) {
 void Graph::generateRandomGraph(int nVertices, char typeOfGraph, int minCost, int maxCost, bool complete) {
     if(nVertices > 0) {
         srand(time(NULL));
-        if (minCost<0)
+        if (minCost<=0)
         {
             minCost = 1;
             cout<<"le cout minimum doit être superieur ou égal à 1"<<endl<<"cout minimum initialisé à 1"<<endl;
@@ -225,6 +226,7 @@ Edge* Graph::getEdge (Vertice* src, Vertice* dst)
 void Graph::printAsMatrix() {
     int digits = getDigits(this->listVertices.size());
     int beforeSpaces;
+    int m = numeric_limits<int>::max()/2;
 
     // before spaces
     for(int i = 0; i < digits+1; i++) { cout << " "; }
@@ -250,11 +252,15 @@ void Graph::printAsMatrix() {
 
             // print relation
             if(isLinked(this->listVertices[i].getId(), this->listVertices[a].getId())) {
-                cout << this->getEdge(&listVertices[i], &listVertices[a])->cost;
-                for (int k=0; k<5-getDigits(this->getEdge(&listVertices[i], &listVertices[a])->cost); ++k)
+                if (this->getEdge(&listVertices[i], &listVertices[a])->cost < m)
+                {
+                    cout << this->getEdge(&listVertices[i], &listVertices[a])->cost;
+                    for (int k=0; k<5-getDigits(this->getEdge(&listVertices[i], &listVertices[a])->cost); ++k)
                     {
                         cout << " ";
                     }
+                }
+                else cout << "inf  ";
             } else {
                 cout << "     ";
             }
@@ -341,7 +347,6 @@ void Graph::loadFromFile(const char filepath[]) {
                         this->listEdge.push_back(Edge(originVertice, &listVertices[originVertice], &listVertices[destinationVertice],1));
                         if(notdirected)
                             this->listEdge.push_back(Edge(originVertice, &listVertices[destinationVertice], &listVertices[originVertice],1));
-                        // louis you forgot this important line
                         this->listVertices[originVertice].addNeighbour(&this->listVertices[destinationVertice]);
                     }
                     ++originVertice;

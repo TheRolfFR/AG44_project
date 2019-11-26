@@ -46,6 +46,7 @@
 		<Unit filename="include/TopologicalSort.h" />
 		<Unit filename="include/TreeNode.h" />
 		<Unit filename="include/Vertice.h" />
+		<Unit filename="include/WarshallFloyd.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/BFS.cpp" />
 		<Unit filename="src/DFS.cpp" />
@@ -57,6 +58,7 @@
 		<Unit filename="src/TopologicalSort.cpp" />
 		<Unit filename="src/TreeNode.cpp" />
 		<Unit filename="src/Vertice.cpp" />
+		<Unit filename="src/WarshallFloyd.cpp" />
 		<Extensions>
 			<envvars />
 			<code_completion />
