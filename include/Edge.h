@@ -10,6 +10,7 @@ class Edge
     friend class WarshallFloyd;
     friend bool operator<(Edge&, Edge&);
     friend class Kruskal;
+    friend class Prim;
 
     public:
         Edge(int, Vertice*, Vertice*);
