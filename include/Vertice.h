@@ -13,6 +13,9 @@ class Vertice
     friend class Graph;
     friend class StronglyRelated;
     friend class Dijkstra;
+    friend class Prim;
+    friend bool operator<(Vertice&, Vertice&);
+
     public:
         Vertice(int);
         virtual ~Vertice();
@@ -34,6 +37,8 @@ class Vertice
         int id;
         vector<Vertice*> neighbours;
 };
+
+bool operator<(Vertice&, Vertice&);
 
 #endif // VERTICE_H
 

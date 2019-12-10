@@ -117,6 +117,8 @@ Graph::Graph(int nVertices, char typeOfGraph, int minCost, int maxCost, bool com
     generateRandomGraph(nVertices, typeOfGraph, minCost, maxCost, complete);
 }
 
+Graph::Graph(const Graph& other):typeOfGraph(other.typeOfGraph),listVertices(other.listVertices),listEdge(other.listEdge){}
+
 void Graph::print() {
     cout << "graph with " << this->listVertices.size() << " vertices and " << this->listEdge.size() << " edges" << endl;
     for(auto i = this->listVertices.begin(); i != this->listVertices.end(); ++i) {
@@ -234,6 +236,8 @@ void Graph::printAsMatrix() {
     // header numbers
     for(int i = 0; i < (int) this->listVertices.size(); i++) {
         cout << this->listVertices.at(i).getId() << "    ";
+        if (i==9)
+            cout<<" ";
     }
     cout << endl;
 

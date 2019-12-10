@@ -14,9 +14,11 @@ class Graph
     friend class Dijkstra;
     friend class WarshallFloyd;
     friend class Kruskal;
+    friend class Prim;
 
     public:
         Graph();
+        Graph(const Graph& other);
         Graph(int);
         Graph(int, char);
         Graph(const char *);
@@ -38,7 +40,6 @@ class Graph
         char typeOfGraph; // 'o' for directed, 'n' for undirected
         vector<Vertice> listVertices;
         vector<Edge> listEdge;
-        int ** cost;
         bool isLinked(int, int);
         void generateRandomGraph(int, char);
         void generateRandomGraph(int, char, int, int);

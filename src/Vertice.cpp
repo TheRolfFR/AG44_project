@@ -27,3 +27,7 @@ void Vertice::print() {
         cout << "V#" << this->id << " has neighbour V#" << (*i)->getId() << endl;
     }
 }
+
+bool operator<(Vertice& Vertice1, Vertice& Vertice2) {
+    return Vertice1.dist < Vertice2.dist;
+}
