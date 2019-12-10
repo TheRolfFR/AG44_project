@@ -83,6 +83,12 @@ Graph Kruskal::execute(Graph& g) {
     //make a new graph from this set of edges
     Graph result;
 
+    // copy vertices
+    for(std::set<Vertice*>::iterator it=verticeSet.begin(); it!=verticeSet.end(); ++it) {
+       result.listVertices.push_back(Vertice(*(*it)));
+       result.listVertices.back().neighbours.clear();
+    }
+
     // copy edges
     Edge* tmp;
     int id = 0;
@@ -93,11 +99,11 @@ Graph Kruskal::execute(Graph& g) {
         result.listEdge.push_back(clone);
         // add reverse edge because this graph is undirected
         result.listEdge.push_back(Edge(id, tmp->dst, tmp->src, tmp->cost)); ++id;
-    }
 
-    // copy vertices
-    for(std::set<Vertice*>::iterator it=verticeSet.begin(); it!=verticeSet.end(); ++it)
-       result.listVertices.push_back(Vertice(*(*it)));
+        // add respective neighbours
+        tmp->src->addNeighbour(tmp->dst);
+        tmp->dst->addNeighbour(tmp->src);
+    }
 
     return result;
 }

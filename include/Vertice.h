@@ -13,6 +13,8 @@ class Vertice
     friend class Graph;
     friend class StronglyRelated;
     friend class Dijkstra;
+    friend class Kruskal;
+
     public:
         Vertice(int);
         virtual ~Vertice();
