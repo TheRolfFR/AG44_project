@@ -13,12 +13,13 @@ class Kruskal
         Kruskal(const Kruskal& other);
         Kruskal& operator=(const Kruskal& other);
         void EraseElementFromVector(std::vector<TreeNode*>, TreeNode*);
-        set<Edge*> execute(Graph&);
-        void printResult(const set<Edge*>& edges);
+        Graph execute(Graph&);
+        void printResult(Graph g);
 
     protected:
 
     private:
+        void printResult(const set<Edge*>& edges);
         bool containsAtMostOne(const set<Vertice*> vertices, Vertice* u, Vertice* v);
         bool contains(const set<Vertice*> vertices, Vertice* u);
 };

@@ -54,8 +54,12 @@ void Kruskal::printResult(const set<Edge*>& edges) {
     for(std::set<Edge*>::iterator it=edges.begin(); it!=edges.end(); ++it)
        (*it)->print();
 }
+void Kruskal::printResult(Graph g) {
+    cout << "=== result of Kruskal ===" << endl;
+    g.printAsMatrix();
+}
 
-set<Edge*> Kruskal::execute(Graph& g) {
+Graph Kruskal::execute(Graph& g) {
     // sort edges by decreasing order
     sort(g.listEdge.begin(), g.listEdge.end());
 
@@ -72,7 +76,30 @@ set<Edge*> Kruskal::execute(Graph& g) {
                 verticeSet.insert(e.dst);
         }
     }
-    return edgeSet;
+
+    //debug print result
+//    printResult(edgeSet);
+
+    //make a new graph from this set of edges
+    Graph result;
+
+    // copy edges
+    Edge* tmp;
+    int id = 0;
+    for(std::set<Edge*>::iterator it=edgeSet.begin(); it!=edgeSet.end(); ++it){
+        tmp = (*it);
+        Edge clone = Edge(*tmp);
+        clone.setId(id); ++id;
+        result.listEdge.push_back(clone);
+        // add reverse edge because this graph is undirected
+        result.listEdge.push_back(Edge(id, tmp->dst, tmp->src, tmp->cost)); ++id;
+    }
+
+    // copy vertices
+    for(std::set<Vertice*>::iterator it=verticeSet.begin(); it!=verticeSet.end(); ++it)
+       result.listVertices.push_back(Vertice(*(*it)));
+
+    return result;
 }
 
 //void Kruskal::print(std::vector<TreeNode*> trees) {
