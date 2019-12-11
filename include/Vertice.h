@@ -16,6 +16,8 @@ class Vertice
     friend class Kruskal;
     friend class Prim;
     friend bool operator<(Vertice&, Vertice&);
+    friend bool cmp(Vertice* i,Vertice* j);
+    friend bool operator==(Vertice&, Vertice&);
 
     public:
         Vertice(int);
@@ -40,6 +42,7 @@ class Vertice
 };
 
 bool operator<(Vertice&, Vertice&);
+bool operator==(Vertice&, Vertice&);
 
 #endif // VERTICE_H
 

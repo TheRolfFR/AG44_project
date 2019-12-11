@@ -13,12 +13,13 @@ class Prim
         Prim(const Prim& other);
         Prim& operator=(const Prim& other);
 
-        void execute (Graph, Vertice);
+        bool execute (Graph, Vertice);
         void affiche (Vertice);
 
     protected:
 
     private:
+        bool find(vector<Vertice*> q, Vertice* pv);
 };
 
 #endif // PRIM_H

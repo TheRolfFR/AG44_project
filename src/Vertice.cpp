@@ -31,3 +31,7 @@ void Vertice::print() {
 bool operator<(Vertice& Vertice1, Vertice& Vertice2) {
     return Vertice1.dist < Vertice2.dist;
 }
+
+bool operator==(Vertice& Vertice1, Vertice& Vertice2) {
+    return Vertice1.id == Vertice2.id;
+}
