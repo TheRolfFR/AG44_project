@@ -101,8 +101,8 @@ Graph Kruskal::execute(Graph& g) {
         result.listEdge.push_back(Edge(id, tmp->dst, tmp->src, tmp->cost)); ++id;
 
         // add respective neighbours
-        tmp->src->addNeighbour(tmp->dst);
-        tmp->dst->addNeighbour(tmp->src);
+        result.getVertice(tmp->src->id)->addNeighbour(result.getVertice(tmp->dst->id));
+        result.getVertice(tmp->dst->id)->addNeighbour(result.getVertice(tmp->src->id));
     }
 
     return result;

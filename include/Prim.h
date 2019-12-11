@@ -14,7 +14,7 @@ class Prim
         Prim& operator=(const Prim& other);
 
         void execute (Graph, Vertice);
-        void affiche (Vertice)
+        void affiche (Vertice);
 
     protected:
 
