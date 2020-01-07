@@ -40,8 +40,13 @@ bool Prim::find(vector<Vertice*> q, Vertice* pv) {
 
 bool cmp (Vertice* i,Vertice* j) { return (i->dist <j->dist); }
 
-bool Prim::execute (Graph g, Vertice v)
+bool Prim::execute (Graph g, Vertice *ver)
 {
+    if(ver == NULL)
+        return false;
+
+    Vertice v = *ver;
+
     int n = g.listVertices.size();
     int a = std::numeric_limits<int>::max()-1;
 

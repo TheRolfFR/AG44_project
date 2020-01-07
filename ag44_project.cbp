@@ -50,19 +50,19 @@
 		<Unit filename="include/Vertice.h" />
 		<Unit filename="include/WarshallFloyd.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="src/BFS.cpp" />
-		<Unit filename="src/DFS.cpp" />
-		<Unit filename="src/Dijkstra.cpp" />
-		<Unit filename="src/Edge.cpp" />
-		<Unit filename="src/Graph.cpp" />
-		<Unit filename="src/Kruskal.cpp" />
-		<Unit filename="src/Prim.cpp" />
-		<Unit filename="src/StronglyRelated.cpp" />
-		<Unit filename="src/Timer.cpp" />
-		<Unit filename="src/TopologicalSort.cpp" />
-		<Unit filename="src/TreeNode.cpp" />
-		<Unit filename="src/Vertice.cpp" />
-		<Unit filename="src/WarshallFloyd.cpp" />
+		<Unit filename="src/Algorithms/BFS.cpp" />
+		<Unit filename="src/Algorithms/DFS.cpp" />
+		<Unit filename="src/Algorithms/Dijkstra.cpp" />
+		<Unit filename="src/Algorithms/Kruskal.cpp" />
+		<Unit filename="src/Algorithms/Prim.cpp" />
+		<Unit filename="src/Algorithms/StronglyRelated.cpp" />
+		<Unit filename="src/Algorithms/TopologicalSort.cpp" />
+		<Unit filename="src/Algorithms/WarshallFloyd.cpp" />
+		<Unit filename="src/Data structures/Edge.cpp" />
+		<Unit filename="src/Data structures/Graph.cpp" />
+		<Unit filename="src/Data structures/TreeNode.cpp" />
+		<Unit filename="src/Data structures/Vertice.cpp" />
+		<Unit filename="src/Utility/Timer.cpp" />
 		<Extensions>
 			<envvars />
 			<code_completion />

@@ -13,8 +13,7 @@ class Prim
         Prim(const Prim& other);
         Prim& operator=(const Prim& other);
 
-        bool execute (Graph, Vertice);
-        void affiche (Vertice);
+        bool execute (Graph, Vertice*);
 
     protected:
 
